@@ -1,0 +1,2 @@
+module MrUsersHelper
+end

@@ -1,0 +1,1 @@
+json.array! @mr_users, partial: 'mr_users/mr_user', as: :mr_user

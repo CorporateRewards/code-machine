@@ -1,0 +1,2 @@
+module ClientNotesHelper
+end

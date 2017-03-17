@@ -1,0 +1,13 @@
+<%= form_for @code_submission do |f| %>
+<ul>
+  <% @code_submission.errors.full_messages.each do |error| %>
+  <li><%= error %></li>
+  <% end %>
+</ul>
+<p>
+  <%= f.label :code %> <br/>
+  <%= f.text_field :code %>
+</p>
+<p><%= f.submit %></p>
+
+<% end %>
