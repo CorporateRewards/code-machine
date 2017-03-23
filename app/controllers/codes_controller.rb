@@ -12,9 +12,9 @@ class CodesController < ApplicationController
   	@code = Code.new(code_params)
 
 		if @code.save
-			redirect_to @code
+			redirect_to @code, notice: "Code added succesfully"
 		else
-			render 'new'
+			render 'new', notice: "Something went wrong, please try again"
 		end
   end
 

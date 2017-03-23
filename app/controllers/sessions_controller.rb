@@ -16,12 +16,14 @@ def create
     current_user = MrUser.find_by_email(@email)
     session[:user_id] = current_user.id  
     session[:email] = current_user.email
+    log_in current_user
     redirect_to new_code_submission_path
   else 
     user = MrUser.create({:email => @email, :cr_id => @id, :name => @name, :user_group => @group, :company => @company, :country => @country})
     current_user = MrUser.find_by_email(@email) 
     session[:user_id] = current_user.id  
     session[:email] = current_user.email
+    log_in current_user
     redirect_to new_code_submission_path
   end 
 end

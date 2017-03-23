@@ -1,0 +1,18 @@
+<div class="container">
+<h1>All code submissions</h1>
+<table class="table table-bordered table-inverse table-sm">
+<thead><th>Code</th><th>Created at</th><th>Updated at</th><th>Email</th><th>Id</th></thead>
+
+<% @codes.each do |code| %>
+<tbody>
+<tr>
+<td>  <p><%= code.code %> </p> </td>
+<td>   <p><%= code.created_at %> </p> </td>
+<td>   <p><%= code.updated_at %> </p> </td>
+<td>   <p><%= code.user_email %> </p> </td>
+<td>   <p><%= code.user_id %> </p> </td>
+</tr>
+<% end %>
+</tbody>
+</table>
+</div>

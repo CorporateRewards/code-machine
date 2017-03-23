@@ -1,7 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  helper_method :current_user
+  include SessionsHelper
+
+
+before_filter :set_current_user
+
+def set_current_user
+  CodeSubmission.current_user = current_user
+end
 
 
 protected
