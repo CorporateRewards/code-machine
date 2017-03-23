@@ -3,7 +3,7 @@ class CodeSubmission < ApplicationRecord
    # belongs_to :code
 
     validate :code_must_be_valid
-    validate :correct_user
+    validate :correct_user, :if => :code_must_be_valid
 
     cattr_accessor :current_user
 
