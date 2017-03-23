@@ -1,5 +1,7 @@
+
 class SessionsController < ApplicationController
 def create
+  current_user = nil
   session[:user_id] = nil
   session[:email] = nil
   @userw = params[:usr]
