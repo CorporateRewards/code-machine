@@ -22,6 +22,9 @@ class CodeSubmissionsController < ApplicationController
 
     if @code_submission.save
       flash.notice = "Code '#{@code_submission.code}' submitted!"
+      code = Code.find_by code: @code
+      code[:date_claimed] = Time.now
+      code.save!
       redirect_to new_code_submission_path
     else
       flash.now[:error] = "Sorry, there was a problem submitting the code '#{@code_submission.code}'"
