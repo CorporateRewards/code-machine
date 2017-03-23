@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :code_submissions
   root "pages#home", page: "home"
   get "pages/home/:usr" => "pages#home"
-  resources :codes
+  resources :codes do
+    collection { post :import }
+  end
+
+  # get "import" => "codes#import"
+  # post "import" => "codes#import"
 
 end

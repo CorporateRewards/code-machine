@@ -20,4 +20,12 @@
 </table>
 
 <%= link_to 'Add new codes', new_code_path %>
+
+<h3>Import codes</h3>
+<%= form_tag import_codes_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import CSV" %>
+<% end %>
+
+<%= @rows %>
 </div> 
