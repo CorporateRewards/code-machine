@@ -22,6 +22,15 @@ class CodesController < ApplicationController
   	@code = Code.find(params[:id])
   end
 
+  def update
+    @code = Code.find(params[:id])
+    if @code.update(code_params)
+       redirect_to @code, notice: 'Code was successfully updated.'
+     else
+       render :edit
+     end
+  end
+
   def show
   	@code = Code.find(params[:id])
   end
