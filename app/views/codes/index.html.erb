@@ -3,12 +3,13 @@
 <div class="container">
 <h1>Codes</h1>
 <table class="table table-bordered table-inverse table-sm">
-<thead><th>Code</th><th>Show</th><th>Edit</th><th>Delete</th></thead>
+<thead><th>Code</th><th>Booking user</th><th>Show</th><th>Edit</th><th>Delete</th></thead>
 
 <% @codes.each do |code| %>
 <tbody>
 <tr>
 <td><p><%= code.code %></p></td>
+<td><p><%= code.booking_user_email %></p></td>
 <td><p><%= link_to 'Show', code_path(code) %></p></td>
 <td><p><%= link_to 'Edit', edit_code_path(code) %></p></td>
 <td><p><%= link_to 'Delete', code_path(code),
