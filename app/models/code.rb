@@ -1,6 +1,6 @@
 class Code < ApplicationRecord
   # belongs_to :programme
-  # has_one :code_submission
+  has_one :code_submission
 
 
   def self.import(file)
