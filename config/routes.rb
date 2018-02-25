@@ -4,9 +4,16 @@ Rails.application.routes.draw do
 
   resources :mr_users
   resources :pages
-  resources :code_submissions
+  resources :code_submissions do
+    collection { get :list }
+  end
   root "pages#home", page: "home"
   get "pages/home/:usr" => "pages#home"
-  resources :codes
+  resources :codes do
+    collection { post :import }
+  end
+
+  # get "import" => "codes#import"
+  # post "import" => "codes#import"
 
 end

@@ -1,12 +1,12 @@
-<%= form_for :code, url: codes_path do |f| %>
+<%= form_for code do |f| %>
 
-<% if @code.errors.any? %>
+<% if code.errors.any? %>
 	<div id="error_reason">
 	<h2>
-		<%= pluralize(@code.errors.count, "error") %> prevented this code from being saved:
+		<%= pluralize(code.errors.count, "error") %> prevented this code from being saved:
 	</h2>
 	<ul>
-		<%= @code.errors.full_messages.each do |message| %>
+		<%= code.errors.full_messages.each do |message| %>
 			<li><%= message %></li>
 		<% end %>
 	</ul>
@@ -16,6 +16,10 @@
 	<p>
 		<%= f.label :code %><br>
 		<%= f.text_field :code %>
+	</p>
+		<p>
+		<%= f.label :booking_user_email %><br>
+		<%= f.text_field :booking_user_email %>
 	</p>
 	<p>
 		<%= f.submit %>
