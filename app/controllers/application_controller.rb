@@ -3,14 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   include SessionsHelper
 
-
-before_filter :set_current_user
-
-def set_current_user
-  CodeSubmission.current_user = current_user
-end
-
-
 protected
 
   def configure_permitted_parameters
