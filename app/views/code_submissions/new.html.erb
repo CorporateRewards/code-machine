@@ -1,7 +1,7 @@
 <%= form_for @code_submission do |f| %>
 <% if @code_submission.errors.any? %>
 <div id="errors" class="row">
-  <p>Your submission failed for the reasons below</p>
+  <p>Your submission failed for following reasons</p>
   <ul>
     <% @code_submission.errors.full_messages.each do |error| %>
     <li><%= error %></li>
@@ -10,10 +10,10 @@
 </div>
 <% end %>
 
-<h2>Please enter your code below</h2>
+<!-- <h2>Please enter your code below</h2> -->
 <p>
-  <%= f.label :code %> <br/>
-  <%= f.text_field :code %>
+  <%= f.label "Enter your code" %> <br/>
+  <%= f.text_field :code_entered %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
 </p>
 <p><%= f.submit %></p>

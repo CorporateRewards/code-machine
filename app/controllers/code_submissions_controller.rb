@@ -1,5 +1,12 @@
 class CodeSubmissionsController < ApplicationController
   # layout 'code_submission'
+
+  before_filter :set_current_user
+
+  def set_current_user
+    CodeSubmission.current_user = current_user
+  end
+
   def index
   	@codes = CodeSubmission.all
   end
@@ -9,25 +16,25 @@ class CodeSubmissionsController < ApplicationController
   end
 
   def new
-   @code_submission = CodeSubmission.new
+    @code_submission = CodeSubmission.new
   end
 
 
   def create
     @code_submission = CodeSubmission.new(code_submission_params)
     @code_submission.user_id = params[:user_id]
-    @code = @code_submission.code
+    @code = Code.find_by(code: @code_submission.code_entered)
+    @code_submission.code = @code
     @code_submission[:user_id] = session[:user_id]
     @code_submission[:user_email] = session[:email]
 
+
     if @code_submission.save
-      flash.notice = "Code '#{@code_submission.code}' submitted!"
-      code = Code.find_by code: @code
-      code[:date_claimed] = Time.now
-      code.save!
+      flash.notice = "Code '#{@code_submission.code_entered}' submitted!"
+      code = Code.find_by(id: @code.id).update(date_claimed: Time.now)
       redirect_to new_code_submission_path
     else
-      flash.now[:error] = "Sorry, there was a problem submitting the code '#{@code_submission.code}'"
+      flash.now[:error] = "Sorry, there was a problem submitting the code '#{@code_submission.code_entered}'"
       render :new
     end
     
@@ -53,7 +60,7 @@ class CodeSubmissionsController < ApplicationController
 
 
   def code_submission_params
-    params.require(:code_submission).permit(:code, :user_id, :user_email, :code_id, :user_id)
+    params.require(:code_submission).permit(:code, :user_id, :user_email, :code_id, :user_id, :code_entered)
   end
 
 

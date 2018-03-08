@@ -1,12 +1,14 @@
-<%= form_for @code do |f| %>
+<div class="row">
+	<div class="col-md-12">
+<%= form_for code do |f| %>
 
-<% if @code.errors.any? %>
+<% if code.errors.any? %>
 	<div id="error_reason">
 	<h2>
-		<%= pluralize(@code.errors.count, "error") %> prevented this code from being saved:
+		<%= pluralize(code.errors.count, "error") %> prevented this code from being saved:
 	</h2>
 	<ul>
-		<%= @code.errors.full_messages.each do |message| %>
+		<%= code.errors.full_messages.each do |message| %>
 			<li><%= message %></li>
 		<% end %>
 	</ul>
@@ -21,8 +23,54 @@
 		<%= f.label :booking_user_email %><br>
 		<%= f.text_field :booking_user_email %>
 	</p>
+			<p>
+		<%= f.label :property %><br>
+		<%= f.text_field :property %>
+	</p>
+			<p>
+		<%= f.label :reference %><br>
+		<%= f.text_field :reference %>
+	</p>
+			<p>
+		<%= f.label :post_as %><br>
+		<%= f.text_field :post_as %>
+	</p>
+			<p>
+		<%= f.label :arrival_date %><br>
+		<%= f.text_field :arrival_date %>
+	</p>
+			<p>
+		<%= f.label :status %><br>
+		<%= f.text_field :status %>
+	</p>
+			<p>
+		<%= f.label :booking_type %><br>
+		<%= f.text_field :booking_type %>
+	</p>
+			<p>
+		<%= f.label :booked_date %><br>
+		<%= f.text_field :booked_date %>
+	</p>
+			<p>
+		<%= f.label :number_of_tickets %><br>
+		<%= f.text_field :number_of_tickets %>
+	</p>
+				<p>
+		<%= f.label :user_group %><br>
+		<%= f.text_field :user_group %>
+	</p>
+				<p>
+		<%= f.label :date_claimed %><br>
+		<%= f.text_field :date_claimed %>
+	</p>
+				<p>
+		<%= f.label :date_sent %><br>
+		<%= f.text_field :date_sent %>
+	</p>
 	<p>
 		<%= f.submit %>
 	</p>
 	
 <% end %>
+	</div>
+</div>

@@ -13,16 +13,16 @@ def create
   @company = @decoded[4]
   @country = @decoded[5]
 
-  current_user = MrUser.find_by_email(@email) 
+  current_user = MrUser.find_by(email: @email) 
   if current_user
-    current_user = MrUser.find_by_email(@email)
+    current_user = MrUser.find_by(email: @email)
     session[:user_id] = current_user.id  
     session[:email] = current_user.email
     log_in current_user
     redirect_to new_code_submission_path
   else 
-    user = MrUser.create({:email => @email, :cr_id => @id, :name => @name, :user_group => @group, :company => @company, :country => @country})
-    current_user = MrUser.find_by_email(@email) 
+    user = MrUser.create({email: @email, cr_id: @id, name: @name, user_group: @group, company: @company, country: @country})
+    current_user = MrUser.find_by(email: @email) 
     session[:user_id] = current_user.id  
     session[:email] = current_user.email
     log_in current_user
