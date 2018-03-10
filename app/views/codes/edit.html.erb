@@ -3,3 +3,111 @@
 <%= render 'form',  code: code  %>
 
 <%= link_to 'Back to codes list', codes_path %>
+
+<h2>Similar bookings</h2>
+
+<table>
+<tr>
+<th>
+  <strong>Code:</strong>
+</th>
+<th>
+  <strong>Arrival date:</strong>
+</th>
+<th>
+  <strong>Booking user:</strong>
+</th>
+<th>
+  <strong>Property:</strong>
+</th>
+<th>
+  <strong>Reference:</strong>
+</th>
+<th>
+  <strong>Post as:</strong>
+</th>
+<th>
+  <strong>Status:</strong>
+</th>
+<th>
+  <strong>Booking type:</strong>
+</th>
+<th>
+  <strong>Booked date:</strong>
+</th>
+<th>
+  <strong>Number of tickets:</strong>
+</th>
+<th>
+  <strong>User group:</strong>
+</th>
+<th>
+  <strong>Date claimed:</strong>
+</th>
+<th>
+  <strong>Date sent:</strong>
+</th>
+<th>
+  <strong>Created at:</strong>
+</th>
+<th>
+  <strong>Updated at:</strong>
+</th>
+</tr>
+
+<% code.similar_bookings.each do |code| %>
+
+
+<tr>
+<td>
+  <%= code.code %>
+</td>
+<td>
+  <%= code.arrival_date %>
+</td>
+<td>
+  <%= code.booking_user_email %>
+</td>
+<td>
+  <%= code.property %>
+</td>
+<td>
+  <%= code.reference %>
+</td>
+<td>
+  <%= code.post_as %>
+</td>
+<td>
+  <%= code.status %>
+</td>
+<td>
+  <%= code.booking_type %>
+</td>
+<td>
+  <%= code.booked_date %>
+</td>
+<td>
+  <%= code.number_of_tickets %>
+</td>
+<td>
+  <%= code.user_group %>
+</td>
+<td>
+  <%= code.date_claimed %>
+</td>
+<td>
+  <%= code.date_sent %>
+</td>
+<td>
+  <%= code.created_at %>
+</td>
+<td>
+  <%= code.updated_at %>
+</td>
+</tr>
+<% end %>
+
+</table>
+<% if code.approval_required_at != nil && code.approved_at == nil %>  
+  <%= link_to 'Approve code', approve_code_path(id: code.id) %>
+<% end %>

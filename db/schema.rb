@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308193009) do
+ActiveRecord::Schema.define(version: 20180310130142) do
 
   create_table "code_submissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "code_entered"
@@ -36,10 +36,14 @@ ActiveRecord::Schema.define(version: 20180308193009) do
     t.string   "user_group"
     t.datetime "date_claimed"
     t.datetime "date_sent"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "booking_email"
     t.string   "agency_email"
+    t.datetime "approval_required_at"
+    t.datetime "approved_at"
+    t.string   "approved_by"
+    t.boolean  "qualifying_booking_type"
   end
 
   create_table "mr_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
