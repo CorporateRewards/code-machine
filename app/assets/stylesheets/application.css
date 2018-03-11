@@ -14,3 +14,21 @@
  *= require_tree .
  *= require_self
  */
+
+html, body {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+}
+.navbar-brand {
+  height: 150px;
+}
+
+.navbar-default {
+  background-color: transparent;
+}
+
+.footer {
+  background: linear-gradient(to right, #AA8800 , #918a6f);
+  height: 100px;
+}

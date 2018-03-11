@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   root "pages#home", page: "home"
   get "pages/home/:usr" => "pages#home"
+  get "approve_code" => "codes#approve"
   resources :codes do
     collection { post :import }
   end

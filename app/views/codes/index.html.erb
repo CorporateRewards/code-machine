@@ -1,32 +1,51 @@
 
 
 <div class="container">
-<h1>Codes sent</h1>
-<table class="table table-bordered table-inverse table-sm table-responsive">
-<thead><th>Code</th><th>Booking user</th><th>Show</th><th>Edit</th><th>Delete</th></thead>
 
-<% @codes.each do |code| %>
-<tbody>
-<tr>
-<td><p><%= code.code %></p></td>
-<td><p><%= code.booking_user_email %></p></td>
-<td><p><%= link_to 'Show', code_path(code) %></p></td>
-<td><p><%= link_to 'Edit', edit_code_path(code) %></p></td>
-<td><p><%= link_to 'Delete', code_path(code),
-		method: :delete,
-		data: {confirm: 'Are you sure?'} %></p></td>
-</tr>
-<% end %>
-</tbody>
-</table>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#codes" data-toggle="tab">Codes</a></li>
+    <li><a href="#add-codes" data-toggle="tab">Add/Import codes</a></li>
+  </ul>
 
-<%= link_to 'Add new codes', new_code_path %>
+  <div class="tab-content">
+    <div class="tab-pane active" id="codes">
+      <table class="table table-bordered table-inverse table-sm table-responsive">
+      <thead><th>Code</th><th>Booking user</th><th>Show</th><th>Edit</th><th>Delete</th></thead>
 
-<h3>Import codes</h3>
-<%= form_tag import_codes_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import CSV" %>
-<% end %>
+      <% @codes.each do |code| %>
+        <tbody>
+          <tr>
+            <td><p><%= code.code %></p></td>
+            <td><p><%= code.booking_user_email %></p></td>
+            <td><p><%= link_to 'Show', code_path(code) %></p></td>
+            <td><p><%= link_to 'Edit', edit_code_path(code) %></p></td>
+            <td><p><%= link_to 'Delete', code_path(code),
+            		method: :delete,
+            		data: {confirm: 'Are you sure?'} %></p></td>
+          </tr>
+      <% end %>
+        </tbody>
+      </table>
+    <%= paginate @codes %>
 
-<%= @rows %>
-</div> 
+    </div>
+    <div class="tab-pane" id="add-codes">
+    <div class="add-individual-code">  
+    <h3>Add an individual code</h3>
+    <%= button_to 'Add a code', new_code_path, :method => :get %>
+    <br>
+    </div>
+
+    <div>
+
+    <h3>Upload multiple codes</h3>
+    <p>File must be a .csv file</p>
+    <%= form_tag import_codes_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import CSV" %>
+    <% end %>
+    </div>
+    <%= @rows %>
+    </div> 
+  </div>
+</div>

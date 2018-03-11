@@ -18,6 +18,7 @@ def create
     current_user = MrUser.find_by(email: @email)
     session[:user_id] = current_user.id  
     session[:email] = current_user.email
+    session[:name] = current_user.name
     log_in current_user
     redirect_to new_code_submission_path
   else 

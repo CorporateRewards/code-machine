@@ -6,7 +6,7 @@ class CodesController < ApplicationController
 
   helper_method :code
   def index
-    @codes = Code.all
+    @codes = Code.page(params[:page]).per(10)
   end
 
   def new
@@ -24,7 +24,7 @@ class CodesController < ApplicationController
   end
 
   def edit
-
+    code
   end
 
   def update
@@ -53,11 +53,16 @@ class CodesController < ApplicationController
     redirect_to codes_path, notice: "Codes added successfully"
   end
 
+  def approve
+    code.approve_code
+    redirect_to code, notice: 'Code was successfully approved.'
+
+  end
 
   private
 
   def code_params
-      params.require(:code).permit(:code, :property, :reference, :post_as, :arrival_date, :status, :booking_type, :booked_date, :booking_user_email, :number_of_tickets, :user_group, :date_claimed, :date_sent)      
+      params.require(:code).permit(:id, :code, :property, :reference, :post_as, :arrival_date, :status, :booking_type, :booked_date, :booking_user_email, :number_of_tickets, :user_group, :date_claimed, :date_sent)      
   end
 
 end
