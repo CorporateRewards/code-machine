@@ -1,7 +1,8 @@
 class Code < ApplicationRecord
   # belongs_to :programme
+  require 'kaminari'
   has_one :code_submission
-
+  paginates_per 10
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|

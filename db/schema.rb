@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310130142) do
+ActiveRecord::Schema.define(version: 20180311145141) do
 
   create_table "code_submissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "code_entered"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(version: 20180310130142) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "code_id"
+    t.integer  "mr_user_id"
     t.index ["code_id"], name: "index_code_submissions_on_code_id", using: :btree
+    t.index ["mr_user_id"], name: "index_code_submissions_on_mr_user_id", using: :btree
+    t.index ["user_id"], name: "index_code_submissions_on_user_id", using: :btree
   end
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -58,4 +61,5 @@ ActiveRecord::Schema.define(version: 20180310130142) do
   end
 
   add_foreign_key "code_submissions", "codes"
+  add_foreign_key "code_submissions", "mr_users"
 end
