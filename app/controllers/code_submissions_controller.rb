@@ -12,7 +12,9 @@ class CodeSubmissionsController < ApplicationController
   end
 
   def list
-    @codes = CodeSubmission.all
+    # user = current_user
+    #@codes = CodeSubmission.all
+    @codes = current_user.code_submissions
   end
 
   def new
@@ -22,10 +24,10 @@ class CodeSubmissionsController < ApplicationController
 
   def create
     @code_submission = CodeSubmission.new(code_submission_params)
-    @code_submission.user_id = params[:user_id]
+    @code_submission.mr_user_id = params[:user_id]
     @code = Code.find_by(code: @code_submission.code_entered)
     @code_submission.code = @code
-    @code_submission[:user_id] = session[:user_id]
+    @code_submission[:mr_user_id] = session[:user_id]
     @code_submission[:user_email] = session[:email]
 
 

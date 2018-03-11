@@ -1,6 +1,7 @@
 class CodeSubmission < ApplicationRecord
   # belongs_to :mr_user
   belongs_to :code
+  belongs_to :mr_user
   validates :code_entered, :presence => true
   validate :correct_user, :if => :valid_and_unclaimed
 

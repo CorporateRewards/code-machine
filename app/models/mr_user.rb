@@ -1,3 +1,3 @@
 class MrUser < ApplicationRecord
-	# has_many :code_submissions
+	has_many :code_submissions
 end
