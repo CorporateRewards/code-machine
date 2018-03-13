@@ -9,23 +9,42 @@
 
   <div class="tab-content">
     <div class="tab-pane active" id="codes">
-      <table class="table table-bordered table-inverse table-sm table-responsive">
-      <thead><th>Code</th><th>Booking user</th><th>Show</th><th>Edit</th><th>Delete</th></thead>
+    <div class="table-responsive-xl">
+      <table class="table-sm table-bordered table-inverse table-sm">
+      <thead><th>Code</th><th>Booking user</th><th>Arrival date</th><th>Hotel</th><th>Reference</th><th>Num. of tickets</th><th>Actions</th></thead>
 
       <% @codes.each do |code| %>
         <tbody>
           <tr>
             <td><p><%= code.code %></p></td>
             <td><p><%= code.booking_user_email %></p></td>
-            <td><p><%= link_to 'Show', code_path(code) %></p></td>
-            <td><p><%= link_to 'Edit', edit_code_path(code) %></p></td>
-            <td><p><%= link_to 'Delete', code_path(code),
-            		method: :delete,
-            		data: {confirm: 'Are you sure?'} %></p></td>
+            <td><p><%= code.arrival_date %></p></td>
+            <td><p><%= code.property %></p></td>
+
+            <td><p><%= code.reference %></p></td>
+
+            <td><p><%= code.number_of_tickets %></p></td>
+            <td>
+            <div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle btn-success" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Actions
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><%= link_to 'Show', code_path(code), class: 'dropdown-item' %></li>
+    <li><%= link_to 'Edit', edit_code_path(code), class: 'dropdown-item' %></li>
+    <li><%= link_to 'Delete', code_path(code), class: 'dropdown-item' ,
+                method: :delete,
+                data: {confirm: 'Are you sure?'} %></li>
+  </div>
+</div>
+            </td>
           </tr>
       <% end %>
         </tbody>
       </table>
+      </div>
+
     <%= paginate @codes %>
 
     </div>
