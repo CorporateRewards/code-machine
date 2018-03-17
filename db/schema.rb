@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180311145141) do
+ActiveRecord::Schema.define(version: 20180316190313) do
 
   create_table "code_submissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "code_entered"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20180311145141) do
     t.datetime "updated_at",   null: false
     t.integer  "code_id"
     t.integer  "mr_user_id"
+    t.string   "status"
+    t.datetime "processed_at"
     t.index ["code_id"], name: "index_code_submissions_on_code_id", using: :btree
     t.index ["mr_user_id"], name: "index_code_submissions_on_mr_user_id", using: :btree
     t.index ["user_id"], name: "index_code_submissions_on_user_id", using: :btree

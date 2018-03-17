@@ -1,9 +1,11 @@
+<div class="container">
 <h3>Codes</h3>
 
 
 <h2>Booking details</h2>
 
-<table>
+<div class="table-responsive-xl">
+<table class="table-sm table-bordered table-inverse table-sm">
 <tr>
 <th>
   <strong>Code:</strong>
@@ -46,9 +48,6 @@
 </th>
 <th>
   <strong>Created at:</strong>
-</th>
-<th>
-  <strong>Updated at:</strong>
 </th>
 </tr>
 
@@ -95,17 +94,19 @@
 <td>
   <%= code.created_at %>
 </td>
-<td>
-  <%= code.updated_at %>
-</td>
 </tr>
 
 </table>
-
+</div>
+<div>
+<br>
+<%= link_to 'Edit', edit_code_path(code) %>
+</div>
 
 <h2>Similar bookings</h2>
 
-<table>
+<div class="table-responsive-xl">
+<table class="table-sm table-bordered table-inverse table-sm table-responsive">
 <tr>
 <th>
   <strong>Code:</strong>
@@ -148,9 +149,6 @@
 </th>
 <th>
   <strong>Created at:</strong>
-</th>
-<th>
-  <strong>Updated at:</strong>
 </th>
 </tr>
 
@@ -200,13 +198,15 @@
 <td>
   <%= code.created_at %>
 </td>
-<td>
-  <%= code.updated_at %>
-</td>
 </tr>
 <% end %>
 
 </table>
-<%= link_to 'Edit', edit_code_path(code) %>
+</div>
+
+<div>
+<br>
 <%= link_to 'Back to codes list', codes_path %>
 <%= link_to 'Add another code', new_code_path %>
+</div>
+</div>
