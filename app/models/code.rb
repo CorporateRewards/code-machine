@@ -44,9 +44,11 @@ class Code < ApplicationRecord
   end
 
   def self.send_claim_code_to_user(row)
-    puts "email sent"
-    puts row["booking_user_email"]
-    puts row["code"]
+    if row["approval_required_at"].nil?
+      puts "email sent"
+      puts row["booking_user_email"]
+      puts row["code"]
+    end
   end
 
   def self.calculate_qualifying_booking(row)

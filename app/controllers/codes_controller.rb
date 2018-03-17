@@ -53,6 +53,10 @@ class CodesController < ApplicationController
     redirect_to codes_path, notice: "Codes added successfully"
   end
 
+  def approval
+    @codes = Code.where.not(approval_required_at: [nil, ""]).where(approved_at: [nil, ""]).page(params[:page]).per(10)
+  end
+
   def approve
     code.approve_code
     redirect_to code, notice: 'Code was successfully approved.'

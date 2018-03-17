@@ -101,6 +101,9 @@
 <div>
 <br>
 <%= link_to 'Edit', edit_code_path(code) %>
+<% if code.approval_required_at != nil && code.approved_at == nil %>  
+  <%= link_to 'Approve code', approve_code_path(id: code.id) %>
+<% end %>
 </div>
 
 <h2>Similar bookings</h2>
