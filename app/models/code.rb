@@ -6,6 +6,7 @@ class Code < ApplicationRecord
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
+      generate_code(row)
       calculate_booking_user(row)
       find_group_and_assign_tickets(row)
       calculate_qualifying_booking(row)
@@ -35,6 +36,11 @@ class Code < ApplicationRecord
     else
       row["number_of_tickets"] = 0
     end
+  end
+
+  def self.generate_code(row) 
+    claim_code = SecureRandom.hex(6)
+    row["code"] = row["reference"] + claim_code
   end
 
   def self.send_claim_code_to_user(row)
