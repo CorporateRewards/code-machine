@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "pages/home/:usr" => "pages#home"
   get "approve_code" => "codes#approve"
   get "approvals" => "codes#approval"
+  get "claim/:id" => "codes#user_codes", as: :claims
   resources :codes do
     collection { post :import }
   end

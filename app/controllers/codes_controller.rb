@@ -40,6 +40,10 @@ class CodesController < ApplicationController
     # @code = Code.find(params[:id])
   end
 
+  def user_codes
+
+  end
+
   def destroy
     code
     code.destroy
