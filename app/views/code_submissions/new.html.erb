@@ -1,5 +1,13 @@
-<div class="container" id="submit-codes">
+<style>
 
+html, body, .container {
+  padding: 0;
+  margin: 0;
+}
+
+</style>
+
+<div class="container" id="submit-codes">
   <div class="row" id="claim-tickets">
     <%= form_for @code_submission do |f| %>
     <% if @code_submission.errors.any? %>
