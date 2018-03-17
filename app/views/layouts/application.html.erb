@@ -52,7 +52,19 @@
             <li><%= link_to "Codes", "/codes"  %></li>
             <li><%= link_to "Code Approvals", "/approvals"  %></li>            
             <li><%= link_to "New Code Submission", "/code_submissions/new"  %></li>            
-          </ul>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/sign_in" class="navbar-link">Login as admin</a></li>
+                <% if admin_signed_in? %>
+                <li><%= link_to "My Profile", edit_admin_registration_path, method: :get, :class => 'navbar-link' %></li>
+                <li><%= link_to "Log out", destroy_admin_session_path, method: :delete, :class => 'navbar-link' %></li>
+                <% else %>
+                <li><%= link_to "Sign Up", new_admin_registration_path, method: :get, :class => 'navbar-link' %>
+                <li><%= link_to "Log In", new_admin_session_path, method: :get, :class => 'navbar-link' %>
+                <% end %>
+              </ul>
+            </li>
         </div>
       </div>
     </div>

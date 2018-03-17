@@ -1,7 +1,7 @@
 class CodeSubmissionsController < ApplicationController
   # layout 'code_submission'
-
-  before_filter :set_current_user
+  skip_before_action :authenticate_admin!
+  before_action :set_current_user
 
   def set_current_user
     CodeSubmission.current_user = current_user

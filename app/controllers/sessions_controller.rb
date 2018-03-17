@@ -1,5 +1,7 @@
 
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_admin!
+
 def create
   current_user = nil
   session[:user_id] = nil

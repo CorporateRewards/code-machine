@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
   get 'code_submissions' => 'sessions#create'
 
   resources :mr_users
