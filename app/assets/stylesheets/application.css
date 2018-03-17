@@ -19,7 +19,9 @@ html, body {
   padding: 0px;
   margin: 0px;
   height: 100%;
+  color: #696969;
 }
+
 .navbar-brand {
   height: 150px;
 }
@@ -35,4 +37,42 @@ html, body {
 
 .table-responsive-xl {
   overflow: scroll;
+}
+
+.submission-buttons {
+  margin: 20px 20px 20px 0px;
+  padding: 10px;
+  border: 1px solid #daa520;
+  border-radius: 10px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .submission-buttons {
+    display: block;
+    width: 100%;
+  }
+} 
+
+.submission-buttons:hover {
+  background-color: #918a6f;
+  text-decoration: none;
+}
+
+#claim-tickets {
+  margin: 30px 0 0 0;
+
+}
+
+#claim-tickets input {
+  margin: 0 0 10px 0;
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+}
+
+.submit-claim {
+  padding: 5px;
+  border: 1px solid #daa520;
+  border-radius: 10px;
 }

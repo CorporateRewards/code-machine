@@ -1,23 +1,27 @@
-<%= form_for @code_submission do |f| %>
-<% if @code_submission.errors.any? %>
-<div id="errors" class="row">
-  <p>Your submission failed for following reasons</p>
-  <ul>
-    <% @code_submission.errors.full_messages.each do |error| %>
-    <li><%= error %></li>
-    <% end %>
-  </ul>
+<div class="container" id="submit-codes">
+
+<div class="row">
+  <%= form_for @code_submission do |f| %>
+  <% if @code_submission.errors.any? %>
+  <div id="errors" class="row">
+    <p>Your submission failed for following reasons</p>
+    <ul>
+      <% @code_submission.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  </div>
+  </div>
+  <div class="row" id="claim-tickets">
+  <div class="col-md-6>"
+    <%= f.label "Enter your code below:" %> <br/>
+    <%= f.text_field :code_entered %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <br><%= f.submit "Claim my cinema tickets", class: 'submit-claim' %>
+  <% end %>
+  </div>
+  </div>
 </div>
-<% end %>
-
-<!-- <h2>Please enter your code below</h2> -->
-<p>
-  <%= f.label "Enter your code" %> <br/>
-  <%= f.text_field :code_entered %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-</p>
-<p><%= f.submit %></p>
-
-<% end %>
-
-<p><%= link_to 'All code submissions', list_code_submissions_path %></p>
+</div>

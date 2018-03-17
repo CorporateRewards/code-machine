@@ -49,22 +49,22 @@
 
     </div>
     <div class="tab-pane" id="add-codes">
-    <div class="add-individual-code">  
-    <h3>Add an individual code</h3>
-    <%= button_to 'Add a code', new_code_path, :method => :get %>
-    <br>
-    </div>
+      <div class="add-individual-code">  
+        <h3>Add an individual code</h3>
+        <%= button_to 'Add a code', new_code_path, :method => :get %>
+        <br>
+      </div>
 
     <div>
 
-    <h3>Upload multiple codes</h3>
-    <p>File must be a .csv file</p>
-    <%= form_tag import_codes_path, multipart: true do %>
-      <%= file_field_tag :file %>
-      <%= submit_tag "Import CSV" %>
-    <% end %>
+      <h3>Upload multiple codes</h3>
+      <p>File must be a .csv file</p>
+      <%= form_tag import_codes_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import CSV" %>
+      <% end %>
     </div>
-    <%= @rows %>
-    </div> 
+      <%= @rows %>
+  </div> 
   </div>
 </div>

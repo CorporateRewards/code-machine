@@ -1,22 +1,24 @@
-<div class="container">
-<h1>My code submissions</h1>
 
-<p>Welcome, <%= current_user.name %>. Below are all your previous cinema tickets claims.</p>
-<br>
-<table class="table table-bordered table-inverse table-sm">
-<thead><th>Code</th><th>Created at</th><th>Updated at</th><th>Email</th><th>Id</th></thead>
+<div class="container" id="list-codes">
+  <h1>My code submissions</h1>
 
-<% @codes.each do |code_sub| %>
+  <p>Welcome, <%= current_user.name %>. Below are all your previous cinema tickets claims.</p>
+  <br>
+  <table class="table table-bordered table-inverse table-sm">
+    <thead><th>Code</th><th>Date claimed</th><th>Date sent</th><th>Number of tickets</th><th>Status</th></thead>
+      <tbody>
+      <% @codes.each do |code_sub| %>    
+        <tr>
+          <td>  <p><%= link_to code_sub.code_entered, code_path(code_sub) %> </p> </td>
+          <td>   <p><%= code_sub.created_at %> </p> </td>
+          <td>   <p><%= code_sub.updated_at %> </p> </td>
+          <td>   <p><%= code_sub.code.number_of_tickets unless code_sub.code.nil? %> </p> </td>
+          <td>   <p><%= code_sub.status %> </p> </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <%= paginate @codes %>
 
-<tbody>
-<tr>
-<td>  <p><%= code_sub.code_entered %> </p> </td>
-<td>   <p><%= code_sub.created_at %> </p> </td>
-<td>   <p><%= code_sub.updated_at %> </p> </td>
-<td>   <p><%= code_sub.user_email %> </p> </td>
-<td>   <p><%= code_sub.user_id %> </p> </td>
-</tr>
-<% end %>
-</tbody>
-</table>
 </div>
+
