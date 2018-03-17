@@ -39,6 +39,10 @@ html, body {
   overflow: scroll;
 }
 
+.subs-nav {
+  margin: 20px;
+}
+
 .submission-buttons {
   margin: 20px 20px 20px 0px;
   padding: 10px;
@@ -66,8 +70,8 @@ html, body {
 
 #claim-tickets input {
   margin: 0 0 10px 0;
-  width: 100%;
-  max-width: 400px;
+  width: 100% !important;
+  max-width: 400px !important;
   height: 50px;
 }
 
