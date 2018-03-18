@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<div class="container" >
 
   <ul class="nav nav-tabs">
     <li class="active"><a href="#codes" data-toggle="tab">Codes</a></li>
@@ -9,6 +9,7 @@
 
   <div class="tab-content">
     <div class="tab-pane active" id="codes">
+    <div id="all-codes">
     <div class="table-responsive-xl">
       <table class="table-sm table-bordered table-inverse table-sm">
       <thead><th>Code</th><th>Booking user</th><th>Arrival date</th><th>Hotel</th><th>Reference</th><th>Num. of tickets</th><th>Actions</th></thead>
@@ -43,6 +44,7 @@
       <% end %>
         </tbody>
       </table>
+      </div>
       </div>
 
     <%= paginate @codes %>

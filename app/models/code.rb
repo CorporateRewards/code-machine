@@ -21,7 +21,7 @@ class Code < ApplicationRecord
       puts "no user provided"
       false
     else
-      row["booking_user_email"] = row["agency_email"].present? ? row["agency_email"] : row["booking_email"]
+      row["booking_user_email"] = row["agency_email"].present? ? row["agency_email"].downcase : row["booking_email"].downcase
     end
   end
 
@@ -51,8 +51,24 @@ class Code < ApplicationRecord
     end
   end
 
+  def self.check_if_user_registered(row)
+      api_key = ENV["api_key"]
+      api_secret = ENV["api_secret"]
+      @baseuser = Base64.strict_encode64("#{api_key}:#{api_secret}")
+      @urlstring_to_post = "https://accounts.spotify.com/api/token"
+      @result = HTTParty.post(@urlstring_to_post.to_str, 
+        :body => { 
+               },
+        :headers => { 'Authorization' => 'Token token=#{@baseuser}' })
+  end
+
   def self.calculate_qualifying_booking(row)
-    unqualifying_types = ['grp', 'xmas', 'glfb']
+    unqualifying_types = [
+                          'grp', 
+                          'xmas', 
+                          'glfb'
+                          ]
+
     if unqualifying_types.include?(row["booking_type"].downcase)
       row["qualifying_booking_type"] = false
       row["number_of_tickets"] = 0

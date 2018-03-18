@@ -34,7 +34,7 @@ class CodeSubmission < ApplicationRecord
   def correct_user
     @code_email = Code.find_by(code: self.code_entered).booking_user_email.to_s unless code_submitted.blank?
 
-    if current_user.email == @code_email
+    if current_user.email.downcase == @code_email.downcase
       true
     else
       errors.add(:Sorry, "#{CodeSubmission.current_user.email} it looks like this code wasn't for you, it was sent to #{@code_email}")

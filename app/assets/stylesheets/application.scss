@@ -22,6 +22,15 @@ html, body {
   color: #696969;
 }
 
+table {
+  width: 100%;
+}
+
+#all-codes {
+  width: 100%;
+  overflow-x: scroll;
+}
+
 .navbar-brand {
   height: 150px;
 }
@@ -35,12 +44,9 @@ html, body {
   height: 100px;
 }
 
-.table-responsive-xl {
-  overflow: scroll;
-}
 
 .subs-nav {
-  margin: 20px;
+  margin: 20px 0 20px 0;
 }
 
 .submission-buttons {
