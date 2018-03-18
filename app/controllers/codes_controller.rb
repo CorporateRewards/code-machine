@@ -6,7 +6,7 @@ class CodesController < ApplicationController
 
   helper_method :code
   def index
-    @codes = Code.page(params[:page]).per(10)
+    @codes = Code.order(id: :desc).page(params[:page]).per(10)
   end
 
   def new

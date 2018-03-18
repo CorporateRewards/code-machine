@@ -12,7 +12,7 @@ class CodeSubmissionsController < ApplicationController
   end
 
   def list
-    @codes = current_user.code_submissions.page(params[:page]).per(10)
+    @codes = current_user.code_submissions.order(id: :desc).page(params[:page]).per(10)
   end
 
   def new

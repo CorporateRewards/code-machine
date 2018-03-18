@@ -63,17 +63,47 @@ class Code < ApplicationRecord
   end
 
   def self.calculate_qualifying_booking(row)
-    unqualifying_types = [
-                          'grp', 
-                          'xmas', 
-                          'glfb'
-                          ]
+    unqualifying_types = ['COG Corporate Group','xmas']
 
-    if unqualifying_types.include?(row["booking_type"].downcase)
-      row["qualifying_booking_type"] = false
-      row["number_of_tickets"] = 0
-    else
+    qualifying_types = [
+                        'DMC',
+                        'GCRP',
+                        'BAN Association',
+                        'ANNE',
+                        'ASCE',
+                        'AUCT',
+                        'BANC',
+                        'DAYM',
+                        'EXHB',
+                        'RESC',
+                        'RTRG',
+                        'TEAM',
+                        'TRNG',
+                        'BAN Christmas Company',
+                        'BAN Company',
+                        'CDR Assessment Centre',
+                        'CDR Associations',
+                        'CDR Company Communication',
+                        'CDR Company Training',
+                        'CDR Executive Meeting',
+                        'CDR Networking',
+                        'CDR Product Launch',
+                        'CDR Public Training',
+                        'CDR Roadshow / Series',
+                        'CDR Team Building',
+                        'COG Incentives',
+                        'CON Pre Agreed Contract',
+                        'CON Residential Training',
+                        'EXH Exhibition'
+                      ]
+
+    if qualifying_types.map(&:downcase).include?(row["booking_type"].downcase)
       row["qualifying_booking_type"] = true
+    elsif unqualifying_types.map(&:downcase).include?(row["booking_type"].downcase)
+      row["approval_required_at"] = DateTime.current
+      row["qualifying_booking_type"] = false
+    else
+      row["qualifying_booking_type"] = false
     end
   end
 
