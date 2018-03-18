@@ -1,5 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
+<p>Editing <%= code.code %> </p>
 <%= form_for code do |f| %>
 
 <% if code.errors.any? %>
@@ -15,14 +16,18 @@
 	</div>
 <% end %>
 
-	<p>
-		<%= f.label :code %><br>
-		<%= f.text_field :code %>
-	</p>
 		<p>
 		<%= f.label :booking_user_email %><br>
 		<%= f.text_field :booking_user_email %>
-	</p>
+		</p>
+				<p>
+		<%= f.label :booking_email %><br>
+		<%= f.text_field :booking_email %>
+		</p>
+				<p>
+		<%= f.label :agency_email %><br>
+		<%= f.text_field :agency_email %>
+		</p>
 			<p>
 		<%= f.label :property %><br>
 		<%= f.text_field :property %>
@@ -51,22 +56,11 @@
 		<%= f.label :booked_date %><br>
 		<%= f.text_field :booked_date %>
 	</p>
-			<p>
+	<p>
 		<%= f.label :number_of_tickets %><br>
 		<%= f.text_field :number_of_tickets %>
 	</p>
-				<p>
-		<%= f.label :user_group %><br>
-		<%= f.text_field :user_group %>
-	</p>
-				<p>
-		<%= f.label :date_claimed %><br>
-		<%= f.text_field :date_claimed %>
-	</p>
-				<p>
-		<%= f.label :date_sent %><br>
-		<%= f.text_field :date_sent %>
-	</p>
+
 	<p>
 		<%= f.submit %>
 	</p>

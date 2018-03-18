@@ -14,13 +14,8 @@ class CodesController < ApplicationController
   end
 
   def create
-    @code = Code.new(code_params)
-
-    if @code.save
-      redirect_to @code, notice: "Code added successfully"
-    else
-      render 'new', notice: "Something went wrong, please try again"
-    end
+    create_code = Code.new_code(code_params)
+    redirect_to codes_path, notice: "Code added successfully"
   end
 
   def edit
@@ -37,7 +32,7 @@ class CodesController < ApplicationController
   end
 
   def show
-    # @code = Code.find(params[:id])
+    code
   end
 
   def user_codes
@@ -64,13 +59,34 @@ class CodesController < ApplicationController
   def approve
     code.approve_code
     redirect_to code, notice: 'Code was successfully approved.'
+  end
 
+  def process_code
+    code.process_code
+    redirect_to code, notice: 'Code was successfully marked as sent.'
   end
 
   private
 
   def code_params
-      params.require(:code).permit(:id, :code, :property, :reference, :post_as, :arrival_date, :status, :booking_type, :booked_date, :booking_user_email, :number_of_tickets, :user_group, :date_claimed, :date_sent)      
+      params.require(:code).permit(
+                                  :id, 
+                                  :code, 
+                                  :property, 
+                                  :reference, 
+                                  :post_as, 
+                                  :arrival_date, 
+                                  :status, 
+                                  :booking_type, 
+                                  :booked_date, 
+                                  :booking_user_email, 
+                                  :number_of_tickets, 
+                                  :user_group, 
+                                  :date_claimed, 
+                                  :date_sent, 
+                                  :booking_email, 
+                                  :agency_email
+                                  )      
   end
 
 end

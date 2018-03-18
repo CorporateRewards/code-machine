@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   end
   root "pages#home", page: "home"
   get "pages/home/:usr" => "pages#home"
-  get "approve_code" => "codes#approve"
+  put "approve_code" => "codes#approve"
+  put "process_code" => "codes#process_code", as: :process_code
   get "approvals" => "codes#approval"
   get "claim/:id" => "codes#user_codes", as: :claims
   resources :codes do

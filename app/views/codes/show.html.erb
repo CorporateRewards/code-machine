@@ -5,7 +5,7 @@
 <h2>Booking details</h2>
 
 <div class="table-responsive-xl">
-<table class="table-sm table-bordered table-inverse table-sm">
+<table class="table table-responsive">
 <tr>
 <th>
   <strong>Code:</strong>
@@ -102,14 +102,20 @@
 <br>
 <%= link_to 'Edit', edit_code_path(code) %>
 <% if code.approval_required_at != nil && code.approved_at == nil %>  
-  <%= link_to 'Approve code', approve_code_path(id: code.id) %>
+  <%= link_to 'Approve code', approve_code_path(id: code.id), :method => :put %>
 <% end %>
+<br>
+<% if code.date_sent == nil %>  
+  <%= link_to 'Mark as sent', process_code_path(id: code.id), :method => :put %>
+<% end %>
+<br>
+
 </div>
 
 <h2>Similar bookings</h2>
 
 <div class="table-responsive-xl">
-<table class="table-sm table-bordered table-inverse table-sm table-responsive">
+<table class="table">
 <tr>
 <th>
   <strong>Code:</strong>

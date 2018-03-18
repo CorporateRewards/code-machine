@@ -16,6 +16,17 @@ class Code < ApplicationRecord
     end
   end
 
+  def self.new_code(create_code)
+      row = create_code
+      generate_code(row)
+      calculate_booking_user(row)
+      find_group_and_assign_tickets(row)
+      calculate_qualifying_booking(row)
+      requires_approval?(row)
+      Code.create! row
+      send_claim_code_to_user(row)
+  end
+
   def self.calculate_booking_user(row)
     if row["agency_email"].nil? && row["booking_email"].nil?
       puts "no user provided"
@@ -122,6 +133,11 @@ class Code < ApplicationRecord
   def approve_code
     code = Code.find(self[:id])
     code.update(approved_at: DateTime.current)
+  end
+
+  def process_code
+    code = Code.find(self[:id])
+    code.update(date_sent: DateTime.current)
   end
 
 end
