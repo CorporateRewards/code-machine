@@ -1,6 +1,9 @@
 <div class="row">
 	<div class="col-md-12">
+<% if params[:action] == "edit" %>
 <p>Editing <%= code.code %> </p>
+<% end %>
+
 <%= form_for code do |f| %>
 
 <% if code.errors.any? %>
@@ -16,10 +19,13 @@
 	</div>
 <% end %>
 
+<% if params[:action] == "edit" %>
+
 		<p>
 		<%= f.label :booking_user_email %><br>
 		<%= f.text_field :booking_user_email %>
 		</p>
+<% end %>
 				<p>
 		<%= f.label :booking_email %><br>
 		<%= f.text_field :booking_email %>
@@ -56,11 +62,14 @@
 		<%= f.label :booked_date %><br>
 		<%= f.text_field :booked_date %>
 	</p>
+
+<% if params[:action] == "edit" %>
+
 	<p>
 		<%= f.label :number_of_tickets %><br>
 		<%= f.text_field :number_of_tickets %>
 	</p>
-
+<% end %>
 	<p>
 		<%= f.submit %>
 	</p>
