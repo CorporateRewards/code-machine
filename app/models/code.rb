@@ -114,6 +114,7 @@ class Code < ApplicationRecord
       row["approval_required_at"] = DateTime.current
       row["qualifying_booking_type"] = false
     else
+      row["approval_required_at"] = DateTime.current
       row["qualifying_booking_type"] = false
     end
   end

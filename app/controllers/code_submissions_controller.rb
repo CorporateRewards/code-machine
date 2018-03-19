@@ -1,5 +1,5 @@
 class CodeSubmissionsController < ApplicationController
-  # layout 'code_submission'
+  layout 'code_submission'
   skip_before_action :authenticate_admin!
   before_action :set_current_user
 
