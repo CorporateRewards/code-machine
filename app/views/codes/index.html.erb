@@ -75,6 +75,13 @@
           <br>
         </div>
 
+        <div class="export-claimed-codes">  
+          <h3>Export unsent claimed codes</h3>
+          <%= button_to 'Export unsent claimed codes', export_claimed_codes_path(format: :csv), method: :get %>
+          <br>
+        </div>
+
+
       <div>
 
         <h3>Upload code updates</h3>

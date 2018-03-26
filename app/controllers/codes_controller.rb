@@ -66,6 +66,15 @@ class CodesController < ApplicationController
     redirect_to code, notice: 'Code was successfully marked as sent.'
   end
 
+  def claimed_codes
+    @claimed_codes = Code.where.not(date_claimed: [nil, ""]).where(date_sent: [nil, ""])
+    respond_to do |format|
+      format.html
+      format.csv { send_data @claimed_codes.to_csv, filename: "all-unsent-claimed-codes.csv" }
+    end
+
+  end
+
   def export_all_codes
     @all_codes = Code.all
     respond_to do |format|
