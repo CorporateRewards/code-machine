@@ -66,6 +66,18 @@ class CodesController < ApplicationController
     redirect_to code, notice: 'Code was successfully marked as sent.'
   end
 
+  def export_all_codes
+    @all_codes = Code.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @all_codes.to_csv, filename: "all-codes.csv" }
+    end
+  end
+
+  def update_codes
+    Code.update(params[:file])
+    redirect_to codes_path, notice: "Codes updated successfully"
+  end
   private
 
   def code_params

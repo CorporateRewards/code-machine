@@ -16,6 +16,14 @@ class Code < ApplicationRecord
     end
   end
 
+  def self.update(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      code = Code.find(row["id"])
+      code.update(row.to_hash)
+      code.save!
+    end
+  end
+
   def self.new_code(create_code)
       row = create_code
       generate_code(row)
@@ -51,7 +59,7 @@ class Code < ApplicationRecord
 
   def self.generate_code(row) 
     claim_code = SecureRandom.hex(6)
-    row["code"] = row["reference"] + claim_code
+    row["code"] = claim_code + row["reference"]
   end
 
   def self.send_claim_code_to_user(row)
@@ -74,7 +82,8 @@ class Code < ApplicationRecord
   end
 
   def self.calculate_qualifying_booking(row)
-    unqualifying_types = ['COG Corporate Group','xmas']
+
+    approval_types = ['COG Corporate Group','xmas']
 
     qualifying_types = [
                         'DMC',
@@ -110,11 +119,10 @@ class Code < ApplicationRecord
 
     if qualifying_types.map(&:downcase).include?(row["booking_type"].downcase)
       row["qualifying_booking_type"] = true
-    elsif unqualifying_types.map(&:downcase).include?(row["booking_type"].downcase)
+    elsif approval_types.map(&:downcase).include?(row["booking_type"].downcase)
       row["approval_required_at"] = DateTime.current
-      row["qualifying_booking_type"] = false
+      row["qualifying_booking_type"] = true
     else
-      row["approval_required_at"] = DateTime.current
       row["qualifying_booking_type"] = false
     end
   end
@@ -140,5 +148,15 @@ class Code < ApplicationRecord
     code = Code.find(self[:id])
     code.update(date_sent: DateTime.current)
   end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |code|
+        csv << code.attributes.values_at(*column_names)
+      end
+    end
+  end
+
 
 end

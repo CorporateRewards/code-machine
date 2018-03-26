@@ -5,26 +5,26 @@
   <ul class="nav nav-tabs">
     <li class="active"><a href="#codes" data-toggle="tab">Codes</a></li>
     <li><a href="#add-codes" data-toggle="tab">Add/Import codes</a></li>
+    <li><a href="#manage-codes" data-toggle="tab">Manage codes</a></li>
   </ul>
 
   <div class="tab-content">
     <div class="tab-pane active" id="codes">
     <div class="all-codes">
     <div class="table-responsive-xl">
-      <table class="table-sm table-bordered table-inverse table-sm">
-      <thead><th>Code</th><th>Booking user</th><th>Arrival date</th><th>Hotel</th><th>Reference</th><th>Num. of tickets</th><th>Actions</th></thead>
+      <table class="table-sm table-bordered">
+      <thead><th>Code</th><th>Booking user</th><th>User group</th><th>Num. of tickets</th><th>Arrival date</th><th>property</th><th>Reference</th><th>Actions</th></thead>
 
       <% @codes.each do |code| %>
         <tbody>
           <tr>
             <td><p><%= code.code %></p></td>
             <td><p><%= code.booking_user_email %></p></td>
+            <td><p><%= code.user_group %></p></td>
+            <td><p><%= code.number_of_tickets %></p></td>
             <td><p><%= code.arrival_date %></p></td>
             <td><p><%= code.property %></p></td>
-
             <td><p><%= code.reference %></p></td>
-
-            <td><p><%= code.number_of_tickets %></p></td>
             <td>
             <div class="dropdown show">
   <a class="btn btn-secondary dropdown-toggle btn-success" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,7 +57,7 @@
         <br>
       </div>
 
-    <div>
+      <div>
 
       <h3>Upload multiple codes</h3>
       <p>File must be a .csv file</p>
@@ -65,6 +65,26 @@
         <%= file_field_tag :file %>
         <%= submit_tag "Import CSV" %>
       <% end %>
+      </div>
+    </div>
+
+      <div class="tab-pane" id="manage-codes">
+        <div class="export-codes">  
+          <h3>Export codes</h3>
+          <%= button_to 'Export codes', export_codes_path(format: :csv), method: :get %>
+          <br>
+        </div>
+
+      <div>
+
+        <h3>Upload code updates</h3>
+        <p>File must be a .csv file</p>
+        <%= form_tag update_codes_codes_path(format: :csv), multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Import code updates" %>
+        <% end %>
+      </div>
+
     </div>
       <%= @rows %>
   </div> 
