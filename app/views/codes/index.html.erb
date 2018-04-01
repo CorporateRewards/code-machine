@@ -4,96 +4,125 @@
 
   <ul class="nav nav-tabs">
     <li class="active"><a href="#codes" data-toggle="tab">Codes</a></li>
+    <li><a href="#unreg-codes" data-toggle="tab">Unregistered user codes</a></li>
     <li><a href="#add-codes" data-toggle="tab">Add/Import codes</a></li>
     <li><a href="#manage-codes" data-toggle="tab">Manage codes</a></li>
   </ul>
 
   <div class="tab-content">
     <div class="tab-pane active" id="codes">
-    <div class="all-codes">
-    <div class="table-responsive-xl">
-      <table class="table-sm table-bordered">
-      <thead><th>Code</th><th>Booking user</th><th>User group</th><th>Num. of tickets</th><th>Arrival date</th><th>property</th><th>Reference</th><th>Actions</th></thead>
+      <div class="all-codes">
+        <div class="table-responsive-xl">
+          <table class="table-sm table-bordered">
+            <thead><th>Code</th><th>Booking user</th><th>User group</th><th>Num. of tickets</th><th>Arrival date</th><th>property</th><th>Reference</th><th>Actions</th></thead>
+            <tbody>
+              <% @codes.each do |code| %>
+                  <tr>
+                    <td><p><%= code.code %></p></td>
+                    <td><p><%= code.booking_user_email %></p></td>
+                    <td><p><%= code.user_group %></p></td>
+                    <td><p><%= code.number_of_tickets %></p></td>
+                    <td><p><%= code.arrival_date %></p></td>
+                    <td><p><%= code.property %></p></td>
+                    <td><p><%= code.reference %></p></td>
+                    <td>
+                    <div class="dropdown show">
+                      <a class="btn btn-secondary dropdown-toggle btn-success" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
 
-      <% @codes.each do |code| %>
-        <tbody>
-          <tr>
-            <td><p><%= code.code %></p></td>
-            <td><p><%= code.booking_user_email %></p></td>
-            <td><p><%= code.user_group %></p></td>
-            <td><p><%= code.number_of_tickets %></p></td>
-            <td><p><%= code.arrival_date %></p></td>
-            <td><p><%= code.property %></p></td>
-            <td><p><%= code.reference %></p></td>
-            <td>
-            <div class="dropdown show">
-  <a class="btn btn-secondary dropdown-toggle btn-success" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Actions
-  </a>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><%= link_to 'Show', code_path(code), class: 'dropdown-item' %></li>
-    <li><%= link_to 'Edit', edit_code_path(code), class: 'dropdown-item' %></li>
-    <li><%= link_to 'Delete', code_path(code), class: 'dropdown-item' ,
-                method: :delete,
-                data: {confirm: 'Are you sure?'} %></li>
-  </div>
-</div>
-            </td>
-          </tr>
-      <% end %>
-        </tbody>
-      </table>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><%= link_to 'Show', code_path(code), class: 'dropdown-item' %></li>
+                        <li><%= link_to 'Edit', edit_code_path(code), class: 'dropdown-item' %></li>
+                        <li><%= link_to 'Delete', code_path(code), class: 'dropdown-item' ,
+                                    method: :delete,
+                                    data: {confirm: 'Are you sure?'} %></li>
+                      </div>
+                    </div>
+                    </td>
+                  </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
-      </div>
-
-    <%= paginate @codes %>
-
+      <%= paginate @codes %>
     </div>
+
+    <div class="tab-pane" id="unreg-codes">
+      <div class="all-codes">
+        <div class="table-responsive-xl">
+          <table class="table-sm table-bordered">
+            <thead><th>Code</th><th>Booking user</th><th>User group</th><th>Num. of tickets</th><th>Arrival date</th><th>property</th><th>Reference</th><th>Actions</th></thead>
+              <tbody>
+                <% @unregistered_codes.each do |code| %>
+                  <tr>
+                    <td><p><%= code.code %></p></td>
+                    <td><p><%= code.booking_user_email %></p></td>
+                    <td><p><%= code.user_group %></p></td>
+                    <td><p><%= code.number_of_tickets %></p></td>
+                    <td><p><%= code.arrival_date %></p></td>
+                    <td><p><%= code.property %></p></td>
+                    <td><p><%= code.reference %></p></td>
+                    <td>
+                      <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle btn-success" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Actions
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <li><%= link_to 'Show', code_path(code), class: 'dropdown-item' %></li>
+                          <li><%= link_to 'Edit', edit_code_path(code), class: 'dropdown-item' %></li>
+                          <li><%= link_to 'Delete', code_path(code), class: 'dropdown-item' ,
+                                      method: :delete,
+                                      data: {confirm: 'Are you sure?'} %></li>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+        </div>
+      </div>
+      <%= paginate @codes %>
+    </div>
+
     <div class="tab-pane" id="add-codes">
       <div class="add-individual-code">  
         <h3>Add an individual code</h3>
-        <%= button_to 'Add a code', new_code_path, :method => :get %>
+          <%= button_to 'Add a code', new_code_path, :method => :get %><br>
+      </div>
+
+      <div>
+        <h3>Upload multiple codes</h3>
+        <p>File must be a .csv file</p>
+          <%= form_tag import_codes_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= submit_tag "Import CSV" %>
+          <% end %>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="manage-codes">
+      <div class="export-codes">  
+        <h3>Export codes</h3>
+          <%= button_to 'Export codes', export_codes_path(format: :csv), method: :get %><br>
+      </div>
+
+      <div class="export-claimed-codes">  
+        <h3>Export unsent claimed codes</h3>
+          <%= button_to 'Export unsent claimed codes', export_claimed_codes_path(format: :csv), method: :get %>
         <br>
       </div>
 
       <div>
-
-      <h3>Upload multiple codes</h3>
-      <p>File must be a .csv file</p>
-      <%= form_tag import_codes_path, multipart: true do %>
-        <%= file_field_tag :file %>
-        <%= submit_tag "Import CSV" %>
-      <% end %>
-      </div>
-    </div>
-
-      <div class="tab-pane" id="manage-codes">
-        <div class="export-codes">  
-          <h3>Export codes</h3>
-          <%= button_to 'Export codes', export_codes_path(format: :csv), method: :get %>
-          <br>
-        </div>
-
-        <div class="export-claimed-codes">  
-          <h3>Export unsent claimed codes</h3>
-          <%= button_to 'Export unsent claimed codes', export_claimed_codes_path(format: :csv), method: :get %>
-          <br>
-        </div>
-
-
-      <div>
-
         <h3>Upload code updates</h3>
         <p>File must be a .csv file</p>
-        <%= form_tag update_codes_codes_path(format: :csv), multipart: true do %>
-          <%= file_field_tag :file %>
-          <%= submit_tag "Import code updates" %>
-        <% end %>
+          <%= form_tag update_codes_codes_path(format: :csv), multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= submit_tag "Import code updates" %>
+          <% end %>
       </div>
-
     </div>
-      <%= @rows %>
   </div> 
-  </div>
 </div>
+
