@@ -6,7 +6,8 @@ class CodesController < ApplicationController
 
   helper_method :code
   def index
-    @codes = Code.order(id: :desc).page(params[:page]).per(10)
+    @codes = Code.where.not(user_registered_at: [nil, ""]).order(id: :desc).page(params[:page]).per(10)
+    @unregistered_codes = Code.where(user_registered_at: [nil, ""]).order(id: :desc).page(params[:page]).per(10)
   end
 
   def new
@@ -42,7 +43,6 @@ class CodesController < ApplicationController
   def destroy
     code
     code.destroy
-
     redirect_to codes_path
   end
 
@@ -66,6 +66,26 @@ class CodesController < ApplicationController
     redirect_to code, notice: 'Code was successfully marked as sent.'
   end
 
+  def claimed_codes
+    @claimed_codes = Code.where.not(date_claimed: [nil, ""]).where(date_sent: [nil, ""])
+    respond_to do |format|
+      format.html
+      format.csv { send_data @claimed_codes.to_csv, filename: "all-unsent-claimed-codes.csv" }
+    end
+  end
+
+  def export_all_codes
+    @all_codes = Code.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @all_codes.to_csv, filename: "all-codes.csv" }
+    end
+  end
+
+  def update_codes
+    Code.update(params[:file])
+    redirect_to codes_path, notice: "Codes updated successfully"
+  end
   private
 
   def code_params
@@ -85,7 +105,8 @@ class CodesController < ApplicationController
                                   :date_claimed, 
                                   :date_sent, 
                                   :booking_email, 
-                                  :agency_email
+                                  :agency_email,
+                                  :user_registered_at
                                   )      
   end
 

@@ -1,9 +1,0 @@
-code,property,reference,post_as,arrival_date,status,booking_type,booked_date,booking_email,agency_email,booking_user_email,number_of_tickets,user_group,date_claimed,date_sent
-COD23EHYKYNH8HG7,Hotel1,sdgerbebdsvs,Booking 1,23/03/17,ACT,GLFB,22/01/17,gillian@corporaterewards.co.uk,,,2,direct users,,
-COD23EHYKYNH8HG8,Hotel2,gregergwewr23tesd,Booking 2,24/03/17,ACT,GLFB,23/01/17,gilliancorprew@gmail.com,gillian.manning@corporaterewards.co.uk,,1,agency override users,,
-COD23EHYKYNH8HG9,Hotel3,vdsget4t3egrdfgww3,Booking 3,25/03/17,ACT,GLFB,24/01/17,,gilliancorprew@gmail.com,,1,agency users,,
-COD23EHYKYNH8HG10,Hotel4,gewgw,Booking 4,26/03/17,ACT,GLFB,25/01/17,,manning_gillian@hotmail.com,,2,direct users,,
-COD23EHYKYNH8HG11,Hotel5,gergewg,Booking 5,27/03/17,ACT,GLFB,26/01/17,,,,2,agency override users,,
-COD23EHYKYNH8HG12,Hotel6,gwe,Booking 6,28/03/17,ACT,GLFB,27/01/17,manning_gillian@Hotmail.com,gillian.manning@corporaterewards.co.uk,,1,agency users,,
-COD23EHYKYNH8HG13,Hotel7,,Booking 7,29/03/17,ACT,GLFB,28/01/17,manning_gillian@Hotmail.com,,,1,direct users,,
-COD23EHYKYNH8HG14,Hotel7,,Booking 7,20/01/22,ACT,ACT,09/03/18,manning_gillian@Hotmail.com,,,,,,

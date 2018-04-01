@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_admin!, except: [:user_codes]
   include SessionsHelper
-
+  require 'csv'
+  
 protected
 
   def configure_permitted_parameters
