@@ -15,9 +15,13 @@ def create
   @company = @decoded[4]
   @country = @decoded[5]
 
-  current_user = MrUser.find_by(email: @email) 
+  current_user = MrUser.find_by(cr_id: @id) 
   if current_user
-    current_user = MrUser.find_by(email: @email)
+    current_user = MrUser.find_by(cr_id: @id)
+    if current_user[:email] != @email
+      current_user[:email] = @email
+      current_user.save
+    end
     session[:user_id] = current_user.id  
     session[:email] = current_user.email
     session[:name] = current_user.name
@@ -25,7 +29,7 @@ def create
     redirect_to new_code_submission_path
   else 
     user = MrUser.create({email: @email, cr_id: @id, name: @name, user_group: @group, company: @company, country: @country})
-    current_user = MrUser.find_by(email: @email) 
+    current_user = MrUser.find_by(cr_id: @id) 
     session[:user_id] = current_user.id  
     session[:email] = current_user.email
     log_in current_user

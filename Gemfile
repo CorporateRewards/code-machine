@@ -12,8 +12,12 @@ gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'httparty'
+
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
+# Use AWS
+gem 'aws-sdk-rails'
+gem 'aws-sdk-s3', '~> 1'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -47,6 +51,10 @@ gem 'kaminari'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.6'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'capybara'
+
 end
 
 group :development do
@@ -56,6 +64,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'capybara'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
