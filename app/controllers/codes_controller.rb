@@ -15,8 +15,18 @@ class CodesController < ApplicationController
   end
 
   def create
-    create_code = Code.new_code(code_params)
-    redirect_to codes_path, notice: "Code added successfully"
+    @code = Code.new(code_params)
+    @code.initiate_code
+
+    # puts create_code
+
+    if @code.save
+      flash.notice = "Code created!"
+      render :show
+    else
+      flash.now[:error] = "Sorry, there was a problem creating your code"
+      render :new
+    end
   end
 
   def edit
@@ -46,11 +56,17 @@ class CodesController < ApplicationController
     redirect_to codes_path
   end
 
-
   def import 
     Code.import(params[:file])
     redirect_to codes_path, notice: "Codes added successfully"
   end
+
+
+
+  # def import 
+  #   Code.import(params[:file])
+  #   redirect_to codes_path, notice: "Codes added successfully"
+  # end
 
   def approval
     @codes = Code.where.not(approval_required_at: [nil, ""]).where(approved_at: [nil, ""]).page(params[:page]).per(10)
