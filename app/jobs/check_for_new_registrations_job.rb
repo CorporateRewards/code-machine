@@ -31,5 +31,6 @@ class CheckForNewRegistrationsJob < ActiveJob::Base
         end
       end
     end
+    File.delete('registered-users.csv') if File::exists?('registered-users.csv')
   end
 end
