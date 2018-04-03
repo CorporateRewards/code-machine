@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329122321) do
+ActiveRecord::Schema.define(version: 20180403190731) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -76,8 +76,9 @@ ActiveRecord::Schema.define(version: 20180329122321) do
     t.string   "user_group"
     t.string   "company"
     t.string   "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.datetime "registered_at"
   end
 
   add_foreign_key "code_submissions", "codes"

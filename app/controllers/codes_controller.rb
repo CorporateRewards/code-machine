@@ -17,9 +17,7 @@ class CodesController < ApplicationController
   def create
     @code = Code.new(code_params)
     @code.initiate_code
-
-    # puts create_code
-
+    
     if @code.save
       flash.notice = "Code created!"
       render :show
@@ -60,13 +58,6 @@ class CodesController < ApplicationController
     Code.import(params[:file])
     redirect_to codes_path, notice: "Codes added successfully"
   end
-
-
-
-  # def import 
-  #   Code.import(params[:file])
-  #   redirect_to codes_path, notice: "Codes added successfully"
-  # end
 
   def approval
     @codes = Code.where.not(approval_required_at: [nil, ""]).where(approved_at: [nil, ""]).page(params[:page]).per(10)
