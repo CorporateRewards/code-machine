@@ -16,72 +16,44 @@ p {
 
 <h2>Booking details for code <%= code.code %> </h2>
 
-<div class="booking-details">
-<div class="row">
-<p class="col-md-2">
-  <strong>Property:</strong>
-  <%= code.property %>
-</p>
+  <div class="booking-details">
+    <div class="row">
+    <p class="col-md-2">
+      <strong>Property:</strong>
+      <%= code.property %>
+    </p>
 
-<p class="col-md-2">
-  <strong>Arrival date:</strong>
-  <%= code.arrival_date %>
-</p>
+    <p class="col-md-2">
+      <strong>Arrival date:</strong>
+      <%= code.arrival_date %>
+    </p>
 
-<p class="col-md-2">
-  <strong>Reference:</strong>
-  <%= code.reference %>
-</p>
+    <p class="col-md-2">
+      <strong>Booked date:</strong>
+      <%= code.booked_date %>
+    </p>
 
-<p class="col-md-2">
-  <strong>Post as:</strong>
-  <%= code.post_as %>
-</p>
+    <p class="col-md-2">
+      <strong>Post as:</strong>
+      <%= code.post_as %>
+    </p>
 
-</div>
+    <p class="col-md-2">
+      <strong>Number of tickets earned:</strong>
+      <%= code.number_of_tickets %>
+    </p>
 
-<h4>Further details</h4>
+    <p class="col-md-2">
+      <strong>Date claimed:</strong>
+      <%= code.date_claimed %>
+    </p>
+    <p class="col-md-2">
+      <strong>Date sent:</strong>
+      <%= code.date_sent %>
+    </p>
 
-<div class="row">
-<p>
-  <strong>Booking user:</strong>
-  <%= code.booking_user_email %>
-</p>
+    </div>
 
-<p>
-  <strong>Status:</strong>
-  <%= code.status %>
-</p>
-<p>
-  <strong>Booking type:</strong>
-  <%= code.booking_type %>
-</p>
-<p>
-  <strong>Booked date:</strong>
-  <%= code.booked_date %>
-</p>
-<p>
-  <strong>Number of tickets:</strong>
-  <%= code.number_of_tickets %>
-</p>
-
-<p>
-  <strong>User group:</strong>
-  <%= code.user_group %>
-</p>
-<p>
-  <strong>Date claimed:</strong>
-  <%= code.date_claimed %>
-</p>
-<p>
-  <strong>Date sent:</strong>
-  <%= code.date_sent %>
-</p>
-<p>
-  <strong>Created at:</strong>
-  <%= code.created_at %>
-</p>
-</div>
-</div>
+  </div>
 
 </div>

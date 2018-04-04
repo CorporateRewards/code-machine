@@ -1,5 +1,5 @@
 class CodesController < ApplicationController
-
+  layout 'code_submission', only: :user_codes
   def code
     @code ||= Code.find(params[:id])
   end

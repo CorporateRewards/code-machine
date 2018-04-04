@@ -110,14 +110,22 @@
 <br>
 <div class="actions">
 <ul>
-<li class="action-button"><%= link_to 'Edit', edit_code_path(code) %></li>
-<li class="action-button"><% if code.approval_required_at != nil && code.approved_at == nil %>  
-  <%= link_to 'Approve code', approve_code_path(id: code.id), :method => :put %><% end %></li>
-<li class="action-button"><% if code.date_sent == nil %>  
-  <%= link_to 'Mark as sent', process_code_path(id: code.id), :method => :put %>
-<% end %></li>
+<% if code.date_sent.nil? %>
+  <li class="action-button"><%= link_to 'Edit', edit_code_path(code) %></li>
+<% end %>
+
+<% if code.approval_required_at != nil && code.approved_at == nil %>  
+  <li class="action-button"> <%= link_to 'Approve code', approve_code_path(id: code.id), :method => :put %> </li>
+<% end %>
+
+<% if code.date_sent.nil? %>  
+  <li class="action-button"> <%= link_to 'Mark as sent', process_code_path(id: code.id), :method => :put %>
+</li>
+<% end %>
 </ul>
 </div>
+
+<% if code.similar_bookings.count > 0 %>
 
 <h2>Similar bookings</h2>
 
@@ -213,7 +221,7 @@
 
 </table>
 </div>
-
+<% end %>
 <div>
 <br>
 <%= link_to 'Back to codes list', codes_path %>
