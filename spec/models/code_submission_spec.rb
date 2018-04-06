@@ -7,7 +7,11 @@ RSpec.describe CodeSubmission do
     it { is_expected.to belong_to(:code) }
   end
 
-  it "should only allow the booking user to claim the code" do
+  it "should ensure only the user who was sent the code can claim the code" do
+    user = MrUser.new("Gill", "gillian@corporaterewards.co.uk")
+  end
+
+  it "should ensure the code is valid and unclaimed"
 
   end
 end 
