@@ -12,9 +12,10 @@
   <div class="tab-content">
     <div class="tab-pane active" id="codes">
       <div class="all-codes">
-        <div class="table-responsive-xl">
-          <table class="table-sm table-bordered">
-            <thead><th>Code</th><th>Booking user</th><th>User group</th><th>Num. of tickets</th><th>Arrival date</th><th>property</th><th>Reference</th><th>Actions</th></thead>
+        <div class="row">
+          <div class="col-md-12">
+          <table class="table table-hover table-sm">
+            <thead><th>Code</th><th>Booking user</th><th>User group</th><th>Tickets</th><th>Arrival date</th><th>Property</th><th>Reference</th><th>Actions</th></thead>
             <tbody>
               <% @codes.each do |code| %>
                   <tr>
@@ -42,15 +43,17 @@
               <% end %>
             </tbody>
           </table>
+          </div>
         </div>
-      </div>
-      <%= paginate @codes %>
+      </div>        
+    <%= paginate @codes %>
     </div>
 
     <div class="tab-pane" id="unreg-codes">
       <div class="all-codes">
-        <div class="table-responsive-xl">
-          <table class="table-sm table-bordered">
+        <div class="row">
+          <div class="col-md-12">
+          <table class="table table-hover table-sm">
             <thead><th>Code</th><th>Booking user</th><th>User group</th><th>Num. of tickets</th><th>Arrival date</th><th>property</th><th>Reference</th><th>Actions</th></thead>
               <tbody>
                 <% @unregistered_codes.each do |code| %>
@@ -85,7 +88,7 @@
       </div>
       <%= paginate @codes %>
     </div>
-
+  </div>
     <div class="tab-pane" id="add-codes">
       <div class="add-individual-code">  
         <h3>Add an individual code</h3>

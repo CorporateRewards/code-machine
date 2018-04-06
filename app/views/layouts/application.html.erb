@@ -45,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/"><%= image_tag("code_machine_logo.png", :alt => "code machine", height: "100%") %></a>
+        <a class="navbar-brand" href="/"><%= image_tag("CodeMachinelogo.svg", :alt => "code machine", height: "100%") %></a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to "Home", "/pages/home"  %></li>
@@ -65,10 +65,10 @@
     </div>
     <% end %>
     <div class="container">
-          <div class="col-lg-12">
+          <div>
                       <%= render 'layouts/submissions_nav' %>
                       </div>
-          <div class="col-lg-12">
+          <div>
             <%= bootstrap_flash %>
             <%= yield %>
           </div>

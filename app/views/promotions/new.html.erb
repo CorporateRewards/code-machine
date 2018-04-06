@@ -1,0 +1,29 @@
+<%= form_for @promotion do |f| %>
+<ul>
+  <% @promotion.errors.full_messages.each do |error| %>
+  <li><%= error %></li>
+  <% end %>
+</ul>
+<p>
+  <%= f.label :name %> <br/>
+  <%= f.text_field :name %>
+</p>
+
+<p>
+  <%= f.label :valid_from %> <br/>
+  <%= f.date_select :valid_from %>
+</p>
+
+<p>
+  <%= f.label :valid_to %> <br/>
+  <%= f.date_select :valid_to %>
+</p>
+
+<p>
+  <%= f.label :promotion_detail %> <br/>
+  <%= f.text_field :promotion_detail %>
+</p>
+
+<p><%= f.submit %></p>
+
+<% end %>

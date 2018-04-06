@@ -6,8 +6,8 @@ class CodesController < ApplicationController
 
   helper_method :code
   def index
-    @codes = Code.where.not(user_registered_at: [nil, ""]).order(id: :desc).page(params[:page]).per(10)
-    @unregistered_codes = Code.where(user_registered_at: [nil, ""]).order(id: :desc).page(params[:page]).per(10)
+    @codes = Code.where.not(user_registered_at: [nil, ""]).order(id: :desc).page(params[:page]).per(50)
+    @unregistered_codes = Code.where(user_registered_at: [nil, ""]).order(id: :desc).page(params[:page]).per(50)
   end
 
   def new
@@ -55,8 +55,13 @@ class CodesController < ApplicationController
   end
 
   def import 
-    Code.import(params[:file])
-    redirect_to codes_path, notice: "Codes added successfully"
+    if Code.validate_file(params[:file])
+      Code.import(params[:file])
+      redirect_to codes_path, notice: "Codes added successfully"
+    else
+      redirect_to :back, error: "Sorry, there was a problem with your file"
+      # redirect_to codes_path
+    end
   end
 
   def approval

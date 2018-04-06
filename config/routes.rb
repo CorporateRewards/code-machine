@@ -21,4 +21,5 @@ Rails.application.routes.draw do
     collection { post :update_codes }
   end
 
+  resources :promotions
 end

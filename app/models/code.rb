@@ -7,6 +7,22 @@ class Code < ApplicationRecord
   validates_presence_of :property, :reference, :post_as, :arrival_date, :status, :booking_type, :booked_date
 
 
+  def self.validate_file(file)
+    @error_rows = []
+    CSV.foreach(file.path, headers: true) do |row|
+      data = Code.new(row.to_hash)
+      if !data.valid?
+        @error_rows.push(row)
+      end
+      if @error_rows.length > 0
+        return false
+      else
+        return true
+      end
+    end
+  end
+
+
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       code = Code.new(row.to_hash)

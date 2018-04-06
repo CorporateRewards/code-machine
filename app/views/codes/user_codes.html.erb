@@ -5,55 +5,55 @@ html, body, .container {
   margin: 0;
 }
 
-p {
-  border: 1px solid grey;
-  height: 50px;
-  padding: 5px 0 0 5px;
-}
-
 </style>
-<div class="container">
-
-<h2>Booking details for code <%= code.code %> </h2>
-
-  <div class="booking-details">
-    <div class="row">
-    <p class="col-md-2">
-      <strong>Property:</strong>
-      <%= code.property %>
-    </p>
-
-    <p class="col-md-2">
-      <strong>Arrival date:</strong>
-      <%= code.arrival_date %>
-    </p>
-
-    <p class="col-md-2">
-      <strong>Booked date:</strong>
-      <%= code.booked_date %>
-    </p>
-
-    <p class="col-md-2">
-      <strong>Post as:</strong>
-      <%= code.post_as %>
-    </p>
-
-    <p class="col-md-2">
-      <strong>Number of tickets earned:</strong>
-      <%= code.number_of_tickets %>
-    </p>
-
-    <p class="col-md-2">
-      <strong>Date claimed:</strong>
-      <%= code.date_claimed %>
-    </p>
-    <p class="col-md-2">
-      <strong>Date sent:</strong>
-      <%= code.date_sent %>
-    </p>
-
+ <div class="row">
+    <div class="col-md-12">
+      <h3>Booking details for code <%= code.code %></h3>
     </div>
-
   </div>
 
-</div>
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Property</h3>
+
+      <p><%= code.property %></p>
+    </div>
+
+    <div class="col-md-3">
+      <h3>Arrival date</h3>
+
+      <p><%= code.arrival_date %></p>
+    </div>
+
+    <div class="col-md-3">
+      <h3>Booked date</h3>
+
+      <p><%= code.booked_date %></p>
+    </div>
+
+    <div class="col-md-3">
+      <h3>Your reference</h3>
+
+      <p><%= code.post_as %></p>
+    </div>
+  </div><br />
+
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Date tickets claimed</h3>
+
+      <p><%= code.date_claimed %></p>
+    </div>
+
+    <div class="col-md-3">
+      <h3>Qty of tickets earned</h3>
+
+      <p><%= code.number_of_tickets %></p>
+    </div>
+
+    <div class="col-md-3">
+      <h3>Date tickets sent</h3>
+
+      <p><%= code.date_sent %></p>
+    </div>
+  </div>

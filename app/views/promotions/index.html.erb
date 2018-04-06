@@ -1,0 +1,7 @@
+
+<% @promotions.each do |promo| %>
+  <p> <%= promo.name %> </p>
+  <p> <%= promo.valid_from %> </p>
+  <p> <%= promo.valid_to  %> </p>
+  <p> <%= promo.promotion_detail %>  </p>
+<% end %>
