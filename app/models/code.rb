@@ -6,7 +6,6 @@ class Code < ApplicationRecord
   validates_uniqueness_of :code
   validates_presence_of :property, :reference, :post_as, :arrival_date, :status, :booking_type, :booked_date
 
-
   def self.validate_file(file)
     @error_rows = []
     CSV.foreach(file.path, headers: true) do |row|
@@ -96,7 +95,7 @@ class Code < ApplicationRecord
   def find_group_and_assign_tickets
     user = MrUser.find_by(email: self.booking_user_email)
     self.user_group = user ? user.user_group.downcase : self.user_group
-    # row["user_group"] = user_group
+    
     if self.user_group == "employees1" || self.user_group == "direct users"
       self.number_of_tickets = 2
     elsif self.user_group == "agency users" || self.user_group == "agency override users"
@@ -104,6 +103,20 @@ class Code < ApplicationRecord
     else
       self.number_of_tickets = 0
     end
+
+    if check_for_promotions
+      if @promotions.promotion_detail == "double"
+        qty = self.number_of_tickets.to_i
+        qty *= 2
+        self.number_of_tickets = qty
+      else
+        self.number_of_tickets
+      end
+    end   
+  end
+
+  def check_for_promotions 
+    @promotions = Promotion.where(property: self.property).where("? BETWEEN valid_from and valid_to", Date.parse(self.booked_date)).first
   end
 
   def requires_approval?

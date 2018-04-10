@@ -23,7 +23,7 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.new(promo_params)
     if @promotion.save
       flash.notice = "Saved"
-      render :index
+      redirect_to :index
     else
       flash.notice = "Oh no, something went wrong"
       render :new
@@ -45,6 +45,6 @@ class PromotionsController < ApplicationController
 private
 
   def promo_params
-    params.require(:promotion).permit(:name, :valid_from, :valid_to, :promotion_detail)
+    params.require(:promotion).permit(:name, :valid_from, :valid_to, :promotion_detail, :property)
   end
 end
