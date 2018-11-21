@@ -17,7 +17,7 @@ class CodeSubmission < ApplicationRecord
     if code_submitted.blank?
       errors.add(:code_entered, "is not valid, please only enter the claim code you received from us")
       false
-    elsif claimed?
+    elsif claimed? or sent?
       errors.add(:code_entered, "has already been claimed")
       false
     else
@@ -28,6 +28,10 @@ class CodeSubmission < ApplicationRecord
 
   def claimed?
     code_submitted.date_claimed.present?
+  end
+
+  def sent?
+    code_submitted.date_sent.present?
   end
 
 

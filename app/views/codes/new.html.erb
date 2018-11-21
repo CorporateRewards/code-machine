@@ -1,6 +1,28 @@
+<% if @error_rows %>
+  <% if @error_rows.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@error_rows.errors.count, "error") %> prohibited this file from being uploaded:</h2>
+   
+      <ul>
+      <% @error_rows.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+<% if @error_rows %>
+      <ul>
+      <% @error_rows.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+<% end %>
+
+
 <h2>Enter the bookings details below</h2>
 
-<p>When you submit the details, a claim code will be generated and the eligibility of the booking will be calculate.</p>
+<p>When you submit the details, a claim code will be generated and the eligibility of the booking will be calculated.</p>
 <br>
 <%= render 'form' %>
 

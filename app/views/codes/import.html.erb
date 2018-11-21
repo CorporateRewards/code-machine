@@ -1,4 +1,17 @@
-<%= form_tag import_path, multipart: true do %>
+<% if @data.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@data.errors.count, "error") %> prohibited this file from being uploaded:</h2>
+ 
+    <ul>
+    <% @data.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<%= form_tag import_codes_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Import CSV" %>
 <% end %>

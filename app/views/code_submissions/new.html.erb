@@ -8,6 +8,8 @@ html, body, .container {
 </style>
 
 <div class="container" id="submit-codes">
+<% if current_user %>
+
   <div class="row" id="claim-tickets">
     <%= form_for @code_submission do |f| %>
     <% if @code_submission.errors.any? %>
@@ -24,6 +26,7 @@ html, body, .container {
       </div>
     <% end %>
 
+
     <div class="col-md-6>"
       <%= f.label "Enter your code below:" %> <br/>
       <%= f.text_field :code_entered %>
@@ -31,5 +34,11 @@ html, body, .container {
       <br><%= f.submit "Claim my cinema tickets", data: { disable_with: false }, class: 'submit-claim' %>
     <% end %>
     </div>
+<% end %>
+
   </div>
+
+<% if !current_user %>
+<p>Whoops, you can't submit a cinema ticket claim at the moment. Try refreshing the page.</p>
+<% end %>
 </div>

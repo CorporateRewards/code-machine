@@ -39,13 +39,15 @@
   <body>
 
     <div class="container">
-              <div class="col-lg-12">
-                      <%= render 'layouts/submissions_nav' %>
-                      </div>
-          <div class="col-lg-12">
-            <%= bootstrap_flash %>
-            <%= yield %>
-          </div>
+    <% if current_user %>
+      <div class="col-lg-12">
+        <%= render 'layouts/submissions_nav' %>
+      </div>
+      <% end %>
+      <div class="col-lg-12">
+        <%= bootstrap_flash %>
+        <%= yield %>
+      </div>
     </div><!--/row-->
 
   </body>

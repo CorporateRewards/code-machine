@@ -5,83 +5,55 @@ html, body, .container {
   margin: 0;
 }
 
-p {
-  border: 1px solid grey;
-  height: 50px;
-  padding: 5px 0 0 5px;
-}
-
 </style>
-<div class="container">
+ <div class="row">
+    <div class="col-md-12">
+      <h3>Booking details for code <%= code.code %></h3>
+    </div>
+  </div>
 
-<h2>Booking details for code <%= code.code %> </h2>
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Property</h3>
 
-<div class="booking-details">
-<div class="row">
-<p class="col-md-2">
-  <strong>Property:</strong>
-  <%= code.property %>
-</p>
+      <p><%= code.property %></p>
+    </div>
 
-<p class="col-md-2">
-  <strong>Arrival date:</strong>
-  <%= code.arrival_date %>
-</p>
+    <div class="col-md-3">
+      <h3>Arrival date</h3>
 
-<p class="col-md-2">
-  <strong>Reference:</strong>
-  <%= code.reference %>
-</p>
+      <p><%= code.arrival_date %></p>
+    </div>
 
-<p class="col-md-2">
-  <strong>Post as:</strong>
-  <%= code.post_as %>
-</p>
+    <div class="col-md-3">
+      <h3>Booked date</h3>
 
-</div>
+      <p><%= code.booked_date %></p>
+    </div>
 
-<h4>Further details</h4>
+    <div class="col-md-3">
+      <h3>Your reference</h3>
 
-<div class="row">
-<p>
-  <strong>Booking user:</strong>
-  <%= code.booking_user_email %>
-</p>
+      <p><%= code.post_as %></p>
+    </div>
+  </div><br />
 
-<p>
-  <strong>Status:</strong>
-  <%= code.status %>
-</p>
-<p>
-  <strong>Booking type:</strong>
-  <%= code.booking_type %>
-</p>
-<p>
-  <strong>Booked date:</strong>
-  <%= code.booked_date %>
-</p>
-<p>
-  <strong>Number of tickets:</strong>
-  <%= code.number_of_tickets %>
-</p>
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Date tickets claimed</h3>
 
-<p>
-  <strong>User group:</strong>
-  <%= code.user_group %>
-</p>
-<p>
-  <strong>Date claimed:</strong>
-  <%= code.date_claimed %>
-</p>
-<p>
-  <strong>Date sent:</strong>
-  <%= code.date_sent %>
-</p>
-<p>
-  <strong>Created at:</strong>
-  <%= code.created_at %>
-</p>
-</div>
-</div>
+      <p><%= code.date_claimed %></p>
+    </div>
 
-</div>
+    <div class="col-md-3">
+      <h3>Qty of tickets earned</h3>
+
+      <p><%= code.number_of_tickets %></p>
+    </div>
+
+    <div class="col-md-3">
+      <h3>Date tickets sent</h3>
+
+      <p><%= code.date_sent %></p>
+    </div>
+  </div>

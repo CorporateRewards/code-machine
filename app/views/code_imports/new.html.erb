@@ -1,0 +1,25 @@
+
+
+<%= form_for(@code_import, url: code_imports_path) do |f| %>
+<% if @code_import.errors.any? %>
+      <div id="errors" class="row">
+        <div class="col-md-6>"
+
+          <p>Your submission failed for following reasons</p>
+          <ul>
+            <% @code_import.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+
+<div>
+        <h3>Upload multiple codes</h3>
+        <p>File must be a .csv file</p>
+            <%= f.file_field :file %>
+            <%= f.submit "Import CSV" %>
+      </div>
+    <% end %>

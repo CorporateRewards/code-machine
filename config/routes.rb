@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'code_imports/new'
+
   devise_for :admins
   get 'code_submissions' => 'sessions#create'
 
@@ -21,7 +23,6 @@ Rails.application.routes.draw do
     collection { post :update_codes }
   end
 
-  # get "import" => "codes#import"
-  # post "import" => "codes#import"
-
+  resources :promotions
+  resources :code_imports
 end
