@@ -1,13 +1,13 @@
 class CodesController < ApplicationController
-
+  layout 'code_submission', only: :user_codes
   def code
     @code ||= Code.find(params[:id])
   end
 
   helper_method :code
   def index
-    @codes = Code.where.not(user_registered_at: [nil, ""]).order(id: :desc).page(params[:page]).per(10)
-    @unregistered_codes = Code.where(user_registered_at: [nil, ""]).order(id: :desc).page(params[:page]).per(10)
+    @codes = Code.where.not(user_registered_at: [nil, ""]).order(id: :desc).page(params[:page]).per(50)
+    @unregistered_codes = Code.where(user_registered_at: [nil, ""]).order(id: :desc).page(params[:page]).per(50)
   end
 
   def new
@@ -15,8 +15,16 @@ class CodesController < ApplicationController
   end
 
   def create
-    create_code = Code.new_code(code_params)
-    redirect_to codes_path, notice: "Code added successfully"
+    @code = Code.new(code_params)
+    @code.initiate_code
+    
+    if @code.save
+      flash.notice = "Code created!"
+      render :show
+    else
+      flash.now[:error] = "Sorry, there was a problem creating your code"
+      render :new
+    end
   end
 
   def edit
@@ -46,10 +54,16 @@ class CodesController < ApplicationController
     redirect_to codes_path
   end
 
-
   def import 
-    Code.import(params[:file])
-    redirect_to codes_path, notice: "Codes added successfully"
+    @file = params[:file]
+    if Code.validate_file(@file)
+      Code.import(@file)
+      flash.notice = "Codes added successfully"
+      redirect_to codes_path
+    else
+      flash[:error] = "Sorry, there was a problem importing your codes"
+      redirect_to codes_path
+    end
   end
 
   def approval

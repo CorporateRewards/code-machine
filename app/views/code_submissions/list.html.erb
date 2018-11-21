@@ -11,20 +11,26 @@ html, body, .container {
 
   <p>Welcome, <%= current_user.name %>. Below are all your previous cinema tickets claims. Click on the code to see details of the booking.</p>
   <br>
-  <table class="table table-bordered table-inverse table-sm">
-    <thead><th>Code</th><th>Date claimed</th><th>Date sent</th><th>Number of tickets</th><th>Status</th></thead>
+  <div class="row">
+    <div class="col-md-12">
+    <table class="table table-hover table-sm">
+    <th>Code</th><th>Reference</th><th>Property</th><th>Arrival date</th><th>Date claimed</th><th>Date sent</th><th>Number of tickets</th></thead>
       <tbody>
       <% @codes.each do |code_sub| %>    
         <tr>
           <td>  <p><%= link_to code_sub.code_entered, claims_path(code_sub.code) %> </p> </td>
+          <td>   <p><%= code_sub.code.post_as %> </p> </td>
+          <td>   <p><%= code_sub.code.property %> </p> </td>
+          <td>   <p><%= code_sub.code.arrival_date %> </p> </td>          
           <td>   <p><%= code_sub.created_at %> </p> </td>
-          <td>   <p><%= code_sub.processed_at %> </p> </td>
+          <td>   <p><%= code_sub.code.date_sent %> </p> </td>
           <td>   <p><%= code_sub.code.number_of_tickets unless code_sub.code.nil? %> </p> </td>
-          <td>   <p><%= code_sub.processed_at %> </p> </td>
         </tr>
       <% end %>
       </tbody>
     </table>
+    </div>
+  </div>
   <%= paginate @codes %>
 
 </div>

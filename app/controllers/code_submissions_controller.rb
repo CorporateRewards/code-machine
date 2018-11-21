@@ -46,8 +46,7 @@ class CodeSubmissionsController < ApplicationController
 
   def update
     @code_submission = CodeSubmission.find(params[:id])
-    if 
-      @code_submission.update(code_submission_params)
+    if @code_submission.update(code_submission_params)
       flash.notice = "Code '#{@code_submission.code}' Updated!"
       redirect_to edit_code_submission_path(@code_submission)
     else
