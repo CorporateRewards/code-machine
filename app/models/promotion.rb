@@ -1,0 +1,3 @@
+class Promotion < ApplicationRecord
+
+end

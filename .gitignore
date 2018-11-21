@@ -24,3 +24,7 @@ config/secrets.yml
 
 # Ignore application config
 config/environment_variables.yml
+
+# Ignore database and log files
+*.db
+*.log
