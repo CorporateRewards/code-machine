@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410125238) do
+ActiveRecord::Schema.define(version: 20180329122321) do
 
-  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20180410125238) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "code_submissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "code_submissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "code_entered"
     t.integer  "user_id"
     t.string   "user_email"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20180410125238) do
     t.index ["user_id"], name: "index_code_submissions_on_user_id", using: :btree
   end
 
-  create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string   "code"
     t.string   "property"
     t.string   "reference"
@@ -69,26 +69,15 @@ ActiveRecord::Schema.define(version: 20180410125238) do
     t.datetime "user_registered_at"
   end
 
-  create_table "mr_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "mr_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer  "cr_id"
     t.string   "name"
     t.string   "email"
     t.string   "user_group"
     t.string   "company"
     t.string   "country"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.datetime "registered_at"
-  end
-
-  create_table "promotions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.datetime "valid_from"
-    t.datetime "valid_to"
-    t.string   "promotion_detail"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.string   "property"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "code_submissions", "codes"

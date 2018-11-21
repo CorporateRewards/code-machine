@@ -1,199 +1,342 @@
-<div class="row">
+<!-- <div class="container all-codes">
+<h3>Codes</h3>
 
- <h2>Booking details for code <%= code.code %></h2>
+
+<h2>Booking details</h2>
+
+<div class="table-responsive-xl">
+<table class="table">
+<tr>
+<th>
+  <strong>Code:</strong>
+</th>
+<th>
+  <strong>Arrival date:</strong>
+</th>
+
+<th>
+  <strong>Booking user email:</strong>
+</th>
+<th>
+  <strong>Booking user:</strong>
+</th>
+<th>
+  <strong>Agency user:</strong>
+</th>
+<th>
+  <strong>Property:</strong>
+</th>
+<th>
+  <strong>Reference:</strong>
+</th>
+<th>
+  <strong>Post as:</strong>
+</th>
+<th>
+  <strong>Status:</strong>
+</th>
+<th>
+  <strong>Booking type:</strong>
+</th>
+<th>
+  <strong>Booked date:</strong>
+</th>
+<th>
+  <strong>Number of tickets:</strong>
+</th>
+<th>
+  <strong>User group:</strong>
+</th>
+<th>
+  <strong>Date claimed:</strong>
+</th>
+<th>
+  <strong>Date sent:</strong>
+</th>
+<th>
+  <strong>Created at:</strong>
+</th>
+</tr>
+
+<tr>
+<td>
+  <%= code.code %>
+</td>
+<td>
+  <%= code.arrival_date %>
+</td>
+<td>
+  <%= code.booking_user_email %>
+</td>
+<td>
+  <%= code.booking_email %>
+</td>
+<td>
+  <%= code.agency_email %>
+</td>
+<td>
+  <%= code.property %>
+</td>
+<td>
+  <%= code.reference %>
+</td>
+<td>
+  <%= code.post_as %>
+</td>
+<td>
+  <%= code.status %>
+</td>
+<td>
+  <%= code.booking_type %>
+</td>
+<td>
+  <%= code.booked_date %>
+</td>
+<td>
+  <%= code.number_of_tickets %>
+</td>
+<td>
+  <%= code.user_group %>
+</td>
+<td>
+  <%= code.date_claimed %>
+</td>
+<td>
+  <%= code.date_sent %>
+</td>
+<td>
+  <%= code.created_at %>
+</td>
+</tr>
+
+</table>
+</div> -->
+<!-- <style>
+
+html, body, .container {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  border: 1px solid grey;
+  height: 50px;
+  padding: 5px 0 0 5px;
+}
+
+</style> -->
+<div class="container">
+
+<h2>Booking details for code <%= code.code %> </h2>
+
+<div class="booking-details">
+<div class="row">
+<p class="col-md-1">
+  <strong>Property:</strong>
+  <br>
+  <%= code.property %>
+</p>
+
+<p class="col-md-1">
+  <strong>Arrival date:</strong>
+  <br>
+  <%= code.arrival_date %>
+</p>
+
+<p class="col-md-1">
+  <strong>Reference:</strong>
+  <br>
+  <%= code.reference %>
+</p>
+
+<p class="col-md-1">
+  <strong>Post as:</strong>
+  <br>
+  <%= code.post_as %>
+</p>
+
 </div>
-      <div class="row">
-        <div class="col-md-3">
-          <strong>Property:</strong><br />
-          <%= code.property %>
-        </div>
 
-        <div class="col-md-3">
-          <strong>Arrival date:</strong><br />
-          <%= code.arrival_date %>
-        </div>
+<h4>Further details</h4>
 
-        <div class="col-md-3">
-          <strong>Reference:</strong><br />
-          <%= code.reference %>
-        </div>
-
-        <div class="col-md-3">
-          <strong>Post as:</strong><br />
-          <%= code.post_as %>
-        </div>
-      </div>
-
-      <br />
-
-      <br />
-      <div class="row">
-            <h4>Further details</h4>
-
-        <div class="col-md-3">
-          <strong>Qualifying user:</strong><br />
-          <%= code.booking_user_email %>
-        </div>
-
-        <div class="col-md-3">
-          <strong>User group:</strong><br />
-          <%= code.user_group %>
-        </div>
-
-        <div class="col-md-3">
-          <strong>Booking user:</strong><br />
-          <%= code.booking_email %>
-        </div>
-
-        <div class="col-md-3">
-          <strong>Agency user:</strong><br />
-          <%= code.agency_email %>
-        </div>
-      </div>
-
-      <br />
-            <br />
-
-      <div class="row">
-        <div class="col-md-3">
-          <strong>Status:</strong><br />
-          <%= code.status %>
-        </div>
-
-        <div class="col-md-3">
-          <strong>Booking type:</strong><br />
-          <%= code.booking_type %>
-        </div>
-
-        <div class="col-md-3">
-          <strong>Booked date:</strong><br />
-          <%= code.booked_date %>
-        </div>
-      </div>
-
-      <br />
-            <br />
-
-      <div class="row">
-        <div class="col-md-3">
-          <strong>Number of tickets:</strong> <%= code.number_of_tickets %>
-        </div>
-
-        <div class="col-md-3">
-          <strong>Date claimed:</strong><br />
-          <%= code.date_claimed %>
-        </div>
-
-        <div class="col-md-3">
-          <strong>Date sent:</strong><br />
-          <%= code.date_sent %>
-        </div>
-
-        <div class="col-md-3">
-          <strong>Created at:</strong><br />
-          <%= code.created_at %>
-        </div>
-      </div>
-
-        <br />
-      <br />
-
-        <div class=" row actions">
-          <ul>
-            <% if code.date_sent.nil? %>
-
-            <li class="action-button">
-            <%= link_to 'Edit', edit_code_path(code) %></li><% end %><% if code.approval_required_at != nil && code.approved_at == nil %>
-
-            <li class="action-button">
-            <%= link_to 'Approve code', approve_code_path(id: code.id), :method => :put %></li><% end %><% if code.date_sent.nil? %>
-
-            <li class="action-button">
-            <%= link_to 'Mark as sent', process_code_path(id: code.id), :method => :put %></li><% end %>
-          </ul>
-        </div>
-
-      <div class="row">
-        <% if code.similar_bookings.count > 0 %>
-
-        <h2>Similar bookings</h2>
 <div class="row">
+<p class="col-md-1">
+  <strong>Booking user:</strong>
+  <br>
+  <%= code.booking_user_email %>
+</p>
 
-                                <div class="col-md-12">
+<p class="col-md-1">
+  <strong>Status:</strong>
+  <br>
+  <%= code.status %>
+</p>
+<p class="col-md-1">
+  <strong>Booking type:</strong>
+  <br>
+  <%= code.booking_type %>
+</p>
+<p class="col-md-1">
+  <strong>Booked date:</strong>
+  <br>
+  <%= code.booked_date %>
+</p>
+</div>
 
-                                                <table class="table table-hover table-sm">
+<div class="row">
+<p class="col-md-1">
+  <strong>Number of tickets:</strong
+  <br>
+  <%= code.number_of_tickets %>
+</p>
 
-                                                                <thead>
+<p class="col-md-1">
+  <strong>User group:</strong>
+  <br>
+  <%= code.user_group %>
+</p>
+<p class="col-md-1">
+  <strong>Date claimed:</strong>
+  <br>
+  <%= code.date_claimed %>
+</p>
+<p class="col-md-1">
+  <strong>Date sent:</strong>
+  <br>
+  <%= code.date_sent %>
+</p>
+<p class="col-md-1">
+  <strong>Created at:</strong>
+  <br>
+  <%= code.created_at %>
+</p>
+</div>
+</div>
+</div>
 
-                           
-            <tr>
-              <th><strong>Code:</strong></th>
+</div>
 
-              <th><strong>Arrival date:</strong></th>
 
-              <th><strong>Property:</strong></th>
 
-              <th><strong>Reference:</strong></th>
 
-              <th><strong>Post as:</strong></th>
+<div>
+<br>
+<div class="actions">
+<ul>
+<li class="action-button"><%= link_to 'Edit', edit_code_path(code) %></li>
+<li class="action-button"><% if code.approval_required_at != nil && code.approved_at == nil %>  
+  <%= link_to 'Approve code', approve_code_path(id: code.id), :method => :put %><% end %></li>
+<li class="action-button"><% if code.date_sent == nil %>  
+  <%= link_to 'Mark as sent', process_code_path(id: code.id), :method => :put %>
+<% end %></li>
+</ul>
+</div>
+</div>
 
-              <th><strong>Status:</strong></th>
+<h2>Similar bookings</h2>
 
-              <th><strong>Booking type:</strong></th>
+<div class="table-responsive-xl">
+<table class="table">
+<tr>
+<th>
+  <strong>Code:</strong>
+</th>
+<th>
+  <strong>Arrival date:</strong>
+</th>
+<th>
+  <strong>Booking user:</strong>
+</th>
+<th>
+  <strong>Property:</strong>
+</th>
+<th>
+  <strong>Reference:</strong>
+</th>
+<th>
+  <strong>Post as:</strong>
+</th>
+<th>
+  <strong>Status:</strong>
+</th>
+<th>
+  <strong>Booking type:</strong>
+</th>
+<th>
+  <strong>Booked date:</strong>
+</th>
+<th>
+  <strong>Number of tickets:</strong>
+</th>
+<th>
+  <strong>User group:</strong>
+</th>
+<th>
+  <strong>Date claimed:</strong>
+</th>
+<th>
+  <strong>Date sent:</strong>
+</th>
+<th>
+  <strong>Created at:</strong>
+</th>
+</tr>
 
-              <th><strong>Booked date:</strong></th>
+<% code.similar_bookings.each do |code| %>
 
-              <th><strong>Number of tickets:</strong></th>
 
-              <th><strong>User group:</strong></th>
+<tr>
+<td>
+  <%= code.code %>
+</td>
+<td>
+  <%= code.arrival_date %>
+</td>
+<td>
+  <%= code.booking_user_email %>
+</td>
+<td>
+  <%= code.property %>
+</td>
+<td>
+  <%= code.reference %>
+</td>
+<td>
+  <%= code.post_as %>
+</td>
+<td>
+  <%= code.status %>
+</td>
+<td>
+  <%= code.booking_type %>
+</td>
+<td>
+  <%= code.booked_date %>
+</td>
+<td>
+  <%= code.number_of_tickets %>
+</td>
+<td>
+  <%= code.user_group %>
+</td>
+<td>
+  <%= code.date_claimed %>
+</td>
+<td>
+  <%= code.date_sent %>
+</td>
+<td>
+  <%= code.created_at %>
+</td>
+</tr>
+<% end %>
 
-              <th><strong>Date claimed:</strong></th>
+</table>
+</div>
 
-              <th><strong>Date sent:</strong></th>
-
-              <th><strong>Created at:</strong></th>
-            </tr>
-</thead>
-            <% code.similar_bookings.each do |code| %>
-
-            <tr>
-              <td><%= code.code %></td>
-
-              <td><%= code.arrival_date %></td>
-
-              <td><%= code.property %></td>
-
-              <td><%= code.reference %></td>
-
-              <td><%= code.post_as %></td>
-
-              <td><%= code.status %></td>
-
-              <td><%= code.booking_type %></td>
-
-              <td><%= code.booked_date %></td>
-
-              <td><%= code.number_of_tickets %></td>
-
-              <td><%= code.user_group %></td>
-
-              <td><%= code.date_claimed %></td>
-
-              <td><%= code.date_sent %></td>
-
-              <td><%= code.created_at %></td>
-            </tr><% end %>
-          </table>
-        </div></div></div>
-        <% end %>
-      </div>
-
-      <div class="row">
-        <br />
-        <%= link_to 'Back to codes list', codes_path %>
-        <%= link_to 'Add another code', new_code_path %>
-      </div>
-      </div>
-  </div>
-<!--   </div>
- -->
+<div>
+<br>
+<%= link_to 'Back to codes list', codes_path %>
+<%= link_to 'Add another code', new_code_path %>
+</div>
+</div>

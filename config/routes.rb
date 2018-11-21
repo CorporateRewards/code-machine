@@ -21,5 +21,7 @@ Rails.application.routes.draw do
     collection { post :update_codes }
   end
 
-  resources :promotions
+  # get "import" => "codes#import"
+  # post "import" => "codes#import"
+
 end
